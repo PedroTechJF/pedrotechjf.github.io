@@ -32,10 +32,24 @@
                 let input = document.getElementById("calcs");
                 let res = document.getElementById("res");
                 var addN = function(button_id) {
-                input.value = input.value + button_id;
-                check();
+                    var x = window.matchMedia("(max-width: 800px)");
+                    if (x.matches) {
+                        document.getElementById(button_id).setAttribute("style", "background-color: rgba(209, 209, 209, 0.15); transform: scale(1.05);");
+                        setTimeout(function(){
+                            document.getElementById(button_id).setAttribute("style", "background-color: rgba(0, 0, 0, 0.8); transform: scale(1.0);");
+                        },500);
+                    }
+                    input.value = input.value + button_id;
+                    check();
                 }
                 var addO = function(button_id) {
+                    var x = window.matchMedia("(max-width: 800px)");
+                    if (x.matches) {
+                        document.getElementById(button_id).setAttribute("style", "background-color: rgba(209, 209, 209, 0.15); transform: scale(1.05);");
+                        setTimeout(function(){
+                            document.getElementById(button_id).setAttribute("style", "background-color: rgba(0, 0, 0, 0.8); transform: scale(1.0);");
+                        },500);
+                    }
                     if ((input.value.charAt(0) == "-") && (button_id == "+" || button_id == "-" || button_id == "x" || button_id == "÷")){
                         equal();
                         input.value = input.value + button_id;

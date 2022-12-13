@@ -29,7 +29,7 @@ function loader_versions(){
     load = setTimeout(showPage, 1500);
     function showPage() {
     document.getElementById("loader").style.display = "none";
-    document.getElementById("versions").style.display = "flex";
+    document.getElementById("versions").style.display = "flow-root";
     document.getElementById("button").style.display = "flex";
     document.getElementById("buttons").style.display = "flex";
     }
