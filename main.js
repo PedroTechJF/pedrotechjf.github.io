@@ -6,5 +6,6 @@ function loader(){
     document.getElementById("projects-live").style.display = "flex";
     document.getElementById("projects-github").style.display = "flex";
     document.getElementById("button").style.display = "flex";
+    document.getElementById("buttons").style.display = "flex";
     }
 }
