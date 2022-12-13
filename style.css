@@ -84,7 +84,6 @@ margin:0px;
     justify-content: center;
     align-items: center;
     text-align: center;
-    margin: 100px auto 10px auto;
     background-color: rgb(15, 15, 15);
     color: white;
     font-family: Inter;
@@ -98,6 +97,9 @@ margin:0px;
     -webkit-animation-duration: 1s;
     animation-name: animatebottom;
     animation-duration: 1s;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 #i{
     margin: 10px;
