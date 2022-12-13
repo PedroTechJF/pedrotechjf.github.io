@@ -48,34 +48,32 @@ margin:0px;
   }
 
 #button{
-    display: none;
-    position: relative;
-    justify-content: center;
+  display: none;
+  position: relative;
+  justify-content: center;
 }
 #b{
-    display: flex;
-    position: relative;
-    margin: 25px 5px;
-    background-color: rgb(15, 15, 15);
-    color: white;
-    font-family: Inter;
-    font-size: 25px;
-    border-radius: 20px;
-    padding: 20px;
-    width: 100%;
-    max-width: 300px;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    transition: all ease-in-out 0.3s;
-    -webkit-animation-name: animatebottom;
-    -webkit-animation-duration: 1s;
-    animation-name: animatebottom;
-    animation-duration: 1s;
+  display: flex;
+  position: relative;
+  margin: 5px;
+  background-color: rgb(15, 15, 15);
+  font-size: 25px;
+  border-radius: 20px;
+  padding: 20px;
+  width: 100%;
+  max-width: 300px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  transition: all ease-in-out 0.3s;
+  -webkit-animation-name: animatebottom;
+  -webkit-animation-duration: 1s;
+  animation-name: animatebottom;
+  animation-duration: 1s;
 }
 #b:hover{
-    background-color: rgba(209, 209, 209, 0.15);
-    transform: scale(1.05);
+  background-color: rgba(209, 209, 209, 0.15);
+  transform: scale(1.05);
 }
 #projects{
     display: none;
@@ -97,9 +95,8 @@ margin:0px;
     -webkit-animation-duration: 1s;
     animation-name: animatebottom;
     animation-duration: 1s;
-    top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, 0%);
 }
 #i{
     margin: 10px;
