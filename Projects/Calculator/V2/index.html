@@ -60,9 +60,9 @@
                 }
             </script>
             <div class="calc_options">
-                <a class="option" onclick="C()"><i class="fa-solid fa-c"></i></a>
-                <a class="option" style="display: none;" onclick="CE()"><i class="fa-solid fa-c"></i><i class="fa-solid fa-e"></i></a>
-                <a class="option" onclick="backspace()" value="⬅"><i class="fa-solid fa-delete-left"></i></a>
+                <a class="option" id="C" onclick="C()"><i class="fa-solid fa-c"></i></a>
+                <a class="option" id="CE" style="display: none;" onclick="CE()"><i class="fa-solid fa-c"></i><i class="fa-solid fa-e"></i></a>
+                <a class="option" id="⬅" onclick="backspace()" value="⬅"><i class="fa-solid fa-delete-left"></i></a>
                 <a class="option" id="%" onclick="addO(this.id)" value="%"><i class="fa-solid fa-percent"></i></a>
                 <a class="option" id="÷" onclick="addO(this.id)" value="÷"><i class="fa-solid fa-divide"></i></a>
                 <a class="number" id="1" onclick="addN(this.id)" value="1">1</a>
@@ -87,7 +87,7 @@
     <div id="button">
         <a href="sobre.html" id="b">Sobre o Desenvolvedor</a>
         <a href="versões.html" id="b">Versões Anteriores do Projeto</a>
-        <a href="../../../index.html" id="b">Outros Projetos</a>
+        <a href="../../" id="b">Outros Projetos</a>
     </div>
 </body>
 </html>

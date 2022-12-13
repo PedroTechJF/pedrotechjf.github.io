@@ -44,11 +44,22 @@ function C(){
     if (x.matches) {
         document.getElementById('calcs').setAttribute("onclick", "blur();");
         document.getElementById('calcs').setAttribute("readonly", "");
+        document.getElementById("C").setAttribute("style", "background-color: rgba(209, 209, 209, 0.15); transform: scale(1.05);");
+        setTimeout(function(){
+            document.getElementById("C").setAttribute("style", "background-color: rgba(0, 0, 0, 0.8); transform: scale(1.0);");
+        },500);
     }
 }
 function backspace(){
     let calcs = document.getElementById("calcs");
     calcs.value = calcs.value.slice(0, calcs.value.length -1);
+    var x = window.matchMedia("(max-width: 800px)");
+    if (x.matches) {
+        document.getElementById("⬅").setAttribute("style", "background-color: rgba(209, 209, 209, 0.15); transform: scale(1.05);");
+        setTimeout(function(){
+            document.getElementById("⬅").setAttribute("style", "background-color: rgba(0, 0, 0, 0.8); transform: scale(1.0);");
+        },500);
+    }
 }
 function keyboardInput(){
     let calcs = document.getElementById("calcs");
@@ -96,6 +107,10 @@ function check(){
         calcs.value = calcs.value.slice(0, calcs.value.length - 1);
     }
 
+    if (calcs.value.includes("√") == true && numbers.length > 1){
+        calcs.value = calcs.value.slice(0, calcs.value.length - 1);
+    }
+
     if ((numbers.length > 2 || operators[0].length > 1) && (operators[0].includes(operators)) && (operators[0].includes("*-") == false && operators[0].includes("x-") == false && operators[0].includes("/-") == false && operators[0].includes("÷-") == false)) {
         calcs.value = calcs.value.slice(0, calcs.value.length -1);
         console.clear();
@@ -113,10 +128,6 @@ function check(){
         console.clear();
     }
     
-
-    if (calcs.value.includes("√") == true && numbers.length > 1){
-        calcs.value = calcs.value.slice(0, calcs.value.length - 1);
-    }
 }
 function equal(){
     let calcs = document.getElementById("calcs").value;
