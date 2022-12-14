@@ -57,7 +57,7 @@
         to{ bottom:0px; opacity:1 }
       }
     
-    .calc, #calcs, #b, #s{
+    .calc, #b, #s{
         -webkit-tap-highlight-color: transparent;
         -webkit-touch-callout: none;
         -webkit-user-select: none;
@@ -66,7 +66,10 @@
         -ms-user-select: none;
         user-select: none;
     }
-    .calc:focus, #b:focus, #s:focus {
+    .calc:focus, #calcs:focus, #b:focus, #s:focus {
+        outline: none !important;
+    }
+    #calcs:focus-visible{
         outline: none !important;
     }
     .calc{
