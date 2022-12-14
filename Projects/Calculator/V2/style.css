@@ -57,7 +57,7 @@
         to{ bottom:0px; opacity:1 }
       }
     
-    .calc, #b, #s{
+    .calc, #calcs, #b, #s{
         -webkit-tap-highlight-color: transparent;
         -webkit-touch-callout: none;
         -webkit-user-select: none;
