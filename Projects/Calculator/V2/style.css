@@ -46,6 +46,16 @@
           transform: rotate(360deg);
         }
       }
+      
+      @-webkit-keyframes animatebottom {
+        from { bottom:-100px; opacity:0 } 
+        to { bottom:0px; opacity:1 }
+      }
+      
+      @keyframes animatebottom { 
+        from{ bottom:-100px; opacity:0 } 
+        to{ bottom:0px; opacity:1 }
+      }
     
     .calc, #b, #s{
         -webkit-tap-highlight-color: transparent;
@@ -178,15 +188,6 @@
         background-color: rgba(209, 209, 209, 0.15);
         transform: scale(1.05);
     }
-    @-webkit-keyframes animatebottom {
-        from { bottom:-100px; opacity:0 } 
-        to { bottom:0px; opacity:1 }
-      }
-      
-      @keyframes animatebottom { 
-        from{ bottom:-100px; opacity:0 } 
-        to{ bottom:0px; opacity:1 }
-      }
     a{
         text-decoration: none;
         color:rgb(255, 255, 255);
