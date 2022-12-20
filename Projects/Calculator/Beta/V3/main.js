@@ -10,61 +10,65 @@ function loader_calc(){
     document.getElementById("last_buttons").style.display = "flex";
     document.getElementById("img").style.display = "block";
 
+    let img = document.getElementById("img");
+    let actual_theme = document.getElementById("actual_theme");
+    let actual_background = document.getElementById("actual_background");
+    let actual_color = document.getElementById("actual_color");
+    let options = document.getElementsByClassName("option");
     let theme = window.localStorage.getItem("theme");
+    let themes = document.getElementById("themes");
+    let color_themes = document.getElementById("color_themes");
     let color_theme = window.localStorage.getItem("color_theme");
+
     if(theme != null){
-        document.getElementById("img").src = theme;
-        if (theme == ""){
-            document.getElementById("actual").innerHTML = "Nenhum";
-        } else if (theme.includes("background-1.png")){
-            document.getElementById("actual").innerHTML = "Ondas 1";
-        } else if (theme.includes("background-2.png")){
-            document.getElementById("actual").innerHTML = "Ondas 2";
-        } else if (theme.includes("background-3.png")){
-            document.getElementById("actual").innerHTML = "Ondas 3";
-        } else if (theme.includes("background-4.png")){
-            document.getElementById("actual").innerHTML = "Ondas 4";
-        } else if (theme.includes("background-5.png")){
-            document.getElementById("actual").innerHTML = "Ondas 5";
-        } else if (theme.includes("background-6.png")){
-            document.getElementById("actual").innerHTML = "Ondas 6";
-        } else if (theme.includes("background-7.png")){
-            document.getElementById("actual").innerHTML = "Ondas 7";
-        } else if (theme.includes("background-8.png")){
-            document.getElementById("actual").innerHTML = "Ondas 8";
-        }
+        let theme_number = theme.split(/[^0-9]/).filter(Boolean).map(Number);
+        img.src = theme;
+        actual_background.innerHTML = `Ondas ${theme_number}`;
+        actual_theme.innerHTML = `Tema ${theme_number}`;
+        themes.value = "actual";
+        background_themes.value = "actual";
     } else {
-        document.getElementById("img").src = "";
-        document.getElementById("actual").innerHTML = "Nenhum";
+        img.src = "";
+        actual_theme.innerHTML = "Nenhum";
+        actual_background.innerHTML = "Nenhum";
+        themes.value = "actual";
+        background_themes.value = "actual";
     }
-    if(color_theme != null){
-        let options = document.getElementsByClassName("option");
-        for(i= 0; i < options.length; i++){
+    for(i= 0; i < options.length; i++){
+        if(color_theme != null){
             options[i].setAttribute("style", `color: ${color_theme};`);
-            options[9].setAttribute("style", `background-color: ${color_theme}`);
-        }
-        if (color_theme.includes("--theme1")){
-            document.getElementById("actual_theme").innerHTML = "Azul-Claro";
-        } else if (color_theme.includes("--theme2")){
-            document.getElementById("actual_theme").innerHTML = "Laranja";
-        } else if (color_theme.includes("--theme3")){
-            document.getElementById("actual_theme").innerHTML = "Amarelo";
-        } else if (color_theme.includes("--theme4")){
-            document.getElementById("actual_theme").innerHTML = "Azul-Escuro";
-        } else if (color_theme.includes("--theme5")){
-            document.getElementById("actual_theme").innerHTML = "Verde";
-        } else if (color_theme.includes("--theme6")){
-            document.getElementById("actual_theme").innerHTML = "Vermelho";
-        } else if (color_theme.includes("--theme7")){
-            document.getElementById("actual_theme").innerHTML = "Roxo";
-        }
-    } else {
-        let options = document.getElementsByClassName("option");
-        for(i= 0; i < options.length; i++){
+            options[9].setAttribute("style", `background-color: ${color_theme};`);
+        } else if(color_theme == "var(--theme8s)"){
+            options[i].setAttribute("style", `color: ${color_theme};`);
+            options[9].setAttribute("style", `background-color: ${color_theme}; color: #000000;`);
+        } else {
             options[i].setAttribute("style", `color: var(--theme1);`);
             options[9].setAttribute("style", `background-color: var(--theme1);`);
         }
-        document.getElementById("actual_theme").innerHTML = "Azul-Claro";
+        
+    }
+    if(color_theme != null){
+        if(color_theme.includes("1")){
+            actual_color.innerHTML = "Azul-Claro";
+        } else if (color_theme.includes("2")){
+            actual_color.innerHTML = "Laranja";
+        } else if (color_theme.includes("3")){
+            actual_color.innerHTML = "Amarelo";
+        } else if (color_theme.includes("4")){
+            actual_color.innerHTML = "Azul-Escuro";
+        } else if (color_theme.includes("5")){
+            actual_color.innerHTML = "Verde";
+        } else if (color_theme.includes("6")){
+            actual_color.innerHTML = "Vermelho";
+        } else if (color_theme.includes("7")){
+            actual_color.innerHTML = "Roxo";
+        } else if (color_theme.includes("8")){
+            actual_color.innerHTML = "Branco";
+        }
+        color_themes.value = "actual";
+    } else {
+        actual_color.innerHTML = "Azul-Claro";
+        color_themes.value = "actual";
     }
     if(navigator.userAgent.indexOf("Android") != -1){
         document.getElementById("android").setAttribute("style", "display: flex; top: 55px; position: absolute; z-index: 0");
@@ -89,61 +93,65 @@ function loader_about(){
     document.getElementById("last_buttons").style.display = "flex";
     document.getElementById("img").style.display = "block";
 
+    let img = document.getElementById("img");
+    let actual_theme = document.getElementById("actual_theme");
+    let actual_background = document.getElementById("actual_background");
+    let actual_color = document.getElementById("actual_color");
+    let options = document.getElementsByClassName("option");
     let theme = window.localStorage.getItem("theme");
+    let themes = document.getElementById("themes");
+    let color_themes = document.getElementById("color_themes");
     let color_theme = window.localStorage.getItem("color_theme");
+
     if(theme != null){
-        document.getElementById("img").src = theme;
-        if (theme == ""){
-            document.getElementById("actual").innerHTML = "Nenhum";
-        } else if (theme.includes("background-1.png")){
-            document.getElementById("actual").innerHTML = "Ondas 1";
-        } else if (theme.includes("background-2.png")){
-            document.getElementById("actual").innerHTML = "Ondas 2";
-        } else if (theme.includes("background-3.png")){
-            document.getElementById("actual").innerHTML = "Ondas 3";
-        } else if (theme.includes("background-4.png")){
-            document.getElementById("actual").innerHTML = "Ondas 4";
-        } else if (theme.includes("background-5.png")){
-            document.getElementById("actual").innerHTML = "Ondas 5";
-        } else if (theme.includes("background-6.png")){
-            document.getElementById("actual").innerHTML = "Ondas 6";
-        } else if (theme.includes("background-7.png")){
-            document.getElementById("actual").innerHTML = "Ondas 7";
-        } else if (theme.includes("background-8.png")){
-            document.getElementById("actual").innerHTML = "Ondas 8";
-        }
+        let theme_number = theme.split(/[^0-9]/).filter(Boolean).map(Number);
+        img.src = theme;
+        actual_background.innerHTML = `Ondas ${theme_number}`;
+        actual_theme.innerHTML = `Tema ${theme_number}`;
+        themes.value = "actual";
+        background_themes.value = "actual";
     } else {
-        document.getElementById("img").src = "";
-        document.getElementById("actual").innerHTML = "Nenhum";
+        img.src = "";
+        actual_theme.innerHTML = "Nenhum";
+        actual_background.innerHTML = "Nenhum";
+        themes.value = "actual";
+        background_themes.value = "actual";
     }
-    if(color_theme != null){
-        let options = document.getElementsByClassName("option");
-        for(i= 0; i < options.length; i++){
+    for(i= 0; i < options.length; i++){
+        if(color_theme != null){
             options[i].setAttribute("style", `color: ${color_theme};`);
-            options[9].setAttribute("style", `background-color: ${color_theme}`);
-        }
-        if (color_theme.includes("--theme1")){
-            document.getElementById("actual_theme").innerHTML = "Azul-Claro";
-        } else if (color_theme.includes("--theme2")){
-            document.getElementById("actual_theme").innerHTML = "Laranja";
-        } else if (color_theme.includes("--theme3")){
-            document.getElementById("actual_theme").innerHTML = "Amarelo";
-        } else if (color_theme.includes("--theme4")){
-            document.getElementById("actual_theme").innerHTML = "Azul-Escuro";
-        } else if (color_theme.includes("--theme5")){
-            document.getElementById("actual_theme").innerHTML = "Verde";
-        } else if (color_theme.includes("--theme6")){
-            document.getElementById("actual_theme").innerHTML = "Vermelho";
-        } else if (color_theme.includes("--theme7")){
-            document.getElementById("actual_theme").innerHTML = "Roxo";
-        }
-    } else {
-        let options = document.getElementsByClassName("option");
-        for(i= 0; i < options.length; i++){
+            options[9].setAttribute("style", `background-color: ${color_theme};`);
+        } else if(color_theme == "var(--theme8s)"){
+            options[i].setAttribute("style", `color: ${color_theme};`);
+            options[9].setAttribute("style", `background-color: ${color_theme}; color: #000000;`);
+        } else {
             options[i].setAttribute("style", `color: var(--theme1);`);
             options[9].setAttribute("style", `background-color: var(--theme1);`);
         }
-        document.getElementById("actual_theme").innerHTML = "Azul-Claro";
+        
+    }
+    if(color_theme != null){
+        if(color_theme.includes("1")){
+            actual_color.innerHTML = "Azul-Claro";
+        } else if (color_theme.includes("2")){
+            actual_color.innerHTML = "Laranja";
+        } else if (color_theme.includes("3")){
+            actual_color.innerHTML = "Amarelo";
+        } else if (color_theme.includes("4")){
+            actual_color.innerHTML = "Azul-Escuro";
+        } else if (color_theme.includes("5")){
+            actual_color.innerHTML = "Verde";
+        } else if (color_theme.includes("6")){
+            actual_color.innerHTML = "Vermelho";
+        } else if (color_theme.includes("7")){
+            actual_color.innerHTML = "Roxo";
+        } else if (color_theme.includes("8")){
+            actual_color.innerHTML = "Branco";
+        }
+        color_themes.value = "actual";
+    } else {
+        actual_color.innerHTML = "Azul-Claro";
+        color_themes.value = "actual";
     }
     if(navigator.userAgent.indexOf("Android") != -1){
         document.getElementById("android").setAttribute("style", "display: flex; top: 55px; position: absolute; z-index: 0");
@@ -163,61 +171,65 @@ function loader_versions(){
     document.getElementById("version_buttons").style.display = "flex";
     document.getElementById("img").style.display = "block";
 
+    let img = document.getElementById("img");
+    let actual_theme = document.getElementById("actual_theme");
+    let actual_background = document.getElementById("actual_background");
+    let actual_color = document.getElementById("actual_color");
+    let options = document.getElementsByClassName("option");
     let theme = window.localStorage.getItem("theme");
+    let themes = document.getElementById("themes");
+    let color_themes = document.getElementById("color_themes");
     let color_theme = window.localStorage.getItem("color_theme");
+
     if(theme != null){
-        document.getElementById("img").src = theme;
-        if (theme == ""){
-            document.getElementById("actual").innerHTML = "Nenhum";
-        } else if (theme.includes("background-1.png")){
-            document.getElementById("actual").innerHTML = "Ondas 1";
-        } else if (theme.includes("background-2.png")){
-            document.getElementById("actual").innerHTML = "Ondas 2";
-        } else if (theme.includes("background-3.png")){
-            document.getElementById("actual").innerHTML = "Ondas 3";
-        } else if (theme.includes("background-4.png")){
-            document.getElementById("actual").innerHTML = "Ondas 4";
-        } else if (theme.includes("background-5.png")){
-            document.getElementById("actual").innerHTML = "Ondas 5";
-        } else if (theme.includes("background-6.png")){
-            document.getElementById("actual").innerHTML = "Ondas 6";
-        } else if (theme.includes("background-7.png")){
-            document.getElementById("actual").innerHTML = "Ondas 7";
-        } else if (theme.includes("background-8.png")){
-            document.getElementById("actual").innerHTML = "Ondas 8";
-        }
+        let theme_number = theme.split(/[^0-9]/).filter(Boolean).map(Number);
+        img.src = theme;
+        actual_background.innerHTML = `Ondas ${theme_number}`;
+        actual_theme.innerHTML = `Tema ${theme_number}`;
+        themes.value = "actual";
+        background_themes.value = "actual";
     } else {
-        document.getElementById("img").src = "";
-        document.getElementById("actual").innerHTML = "Nenhum";
+        img.src = "";
+        actual_theme.innerHTML = "Nenhum";
+        actual_background.innerHTML = "Nenhum";
+        themes.value = "actual";
+        background_themes.value = "actual";
     }
-    if(color_theme != null){
-        let options = document.getElementsByClassName("option");
-        for(i= 0; i < options.length; i++){
+    for(i= 0; i < options.length; i++){
+        if(color_theme != null){
             options[i].setAttribute("style", `color: ${color_theme};`);
-            options[9].setAttribute("style", `background-color: ${color_theme}`);
-        }
-        if (color_theme.includes("--theme1")){
-            document.getElementById("actual_theme").innerHTML = "Azul-Claro";
-        } else if (color_theme.includes("--theme2")){
-            document.getElementById("actual_theme").innerHTML = "Laranja";
-        } else if (color_theme.includes("--theme3")){
-            document.getElementById("actual_theme").innerHTML = "Amarelo";
-        } else if (color_theme.includes("--theme4")){
-            document.getElementById("actual_theme").innerHTML = "Azul-Escuro";
-        } else if (color_theme.includes("--theme5")){
-            document.getElementById("actual_theme").innerHTML = "Verde";
-        } else if (color_theme.includes("--theme6")){
-            document.getElementById("actual_theme").innerHTML = "Vermelho";
-        } else if (color_theme.includes("--theme7")){
-            document.getElementById("actual_theme").innerHTML = "Roxo";
-        }
-    } else {
-        let options = document.getElementsByClassName("option");
-        for(i= 0; i < options.length; i++){
+            options[9].setAttribute("style", `background-color: ${color_theme};`);
+        } else if(color_theme == "var(--theme8s)"){
+            options[i].setAttribute("style", `color: ${color_theme};`);
+            options[9].setAttribute("style", `background-color: ${color_theme}; color: #000000;`);
+        } else {
             options[i].setAttribute("style", `color: var(--theme1);`);
             options[9].setAttribute("style", `background-color: var(--theme1);`);
         }
-        document.getElementById("actual_theme").innerHTML = "Azul-Claro";
+        
+    }
+    if(color_theme != null){
+        if(color_theme.includes("1")){
+            actual_color.innerHTML = "Azul-Claro";
+        } else if (color_theme.includes("2")){
+            actual_color.innerHTML = "Laranja";
+        } else if (color_theme.includes("3")){
+            actual_color.innerHTML = "Amarelo";
+        } else if (color_theme.includes("4")){
+            actual_color.innerHTML = "Azul-Escuro";
+        } else if (color_theme.includes("5")){
+            actual_color.innerHTML = "Verde";
+        } else if (color_theme.includes("6")){
+            actual_color.innerHTML = "Vermelho";
+        } else if (color_theme.includes("7")){
+            actual_color.innerHTML = "Roxo";
+        } else if (color_theme.includes("8")){
+            actual_color.innerHTML = "Branco";
+        }
+        color_themes.value = "actual";
+    } else {
+        actual_color.innerHTML = "Azul-Claro";
+        color_themes.value = "actual";
     }
     if(navigator.userAgent.indexOf("Android") != -1){
         document.getElementById("android").setAttribute("style", "display: flex; top: 55px; position: absolute; z-index: 0");
@@ -319,13 +331,11 @@ function check(){
 
     if (calcs.value.includes(letters) == false){
         calcs.value = calcs.value.slice(0, calcs.value.length - 1);
-    } else if( (calcs.value == "" && res.innerHTML == "=")){
-        alert("Você precisa digitar alguns números...");
-        calcs.focus();
-        if (x.matches) {
-            calcs.setAttribute("onclick", "blur();");
-            calcs.setAttribute("readonly", "");
-        }
+    } else if((operators[0] != "*-" && operators[0] != "/-" && operators[0] !== "x-" && operators[0] != "÷-") && res.innerHTML != "=" && operators[0].length > 1){
+        calcs.value = calcs.value.slice(0, calcs.value.length - 1);
+    } else if((res.innerHTML != "=" && operators[0].length > 1 && operators[1].length > 0) && (operators[0] == "x-" || operators[0] == "*-" || operators[0] == "/-" || operators[0] == "÷-")){
+        equal();
+        calcs.value = "";
     } else if(operators[0].length > 1 && numbers.length == 0){
         calcs.value = calcs.value.slice(0, calcs.value.length - 1);
     } else if (calcs.value.charAt(0) != "-" && calcs.value.charAt(0) == operators && numbers.length > 1){
@@ -358,7 +368,18 @@ function equal(){
 
     if(numbers.length == 0){
         return
-    } else if(res.innerHTML == "=" && operators[0] == "-"){
+    } else if( (calcs.value == "" && res.innerHTML == "=")){
+        alert("Você precisa digitar alguns números...");
+        calcs.focus();
+        var x = window.matchMedia("(max-width: 800px)") 
+        if (x.matches) {
+            calcs.setAttribute("onclick", "blur();");
+            calcs.setAttribute("readonly", "");
+        }
+    } else if(res.innerHTML == "=" && operators[0] == "-" && operators[1] == undefined){
+        r = numbers[0];
+        res.innerHTML = '=' + r;
+    } else if(res.innerHTML == "=" && operators[0] == "-" && operators[1] != undefined){
         r = -numbers[0];
         res.innerHTML = '=' + r;
     } else if(res.innerHTML != "=" && res.innerHTML.includes("-")){
@@ -414,182 +435,160 @@ function equal(){
 function theme(){
     let img = document.getElementById("img");
     let themes = document.getElementById("themes");
-    img.style.display = "none";
+    let background_themes = document.getElementById("background_themes");
+    let color_themes = document.getElementById("color_themes");
+    let actual_theme = document.getElementById("actual_theme");
+    let actual_background = document.getElementById("actual_background");
+    let actual_color = document.getElementById("actual_color");
+    let options = document.getElementsByClassName("option");
 
-    var x = window.matchMedia("(max-width: 800px)");
-    if(x.matches){
-        if(themes.value == "none"){
-            img.src = "";
-            setTimeout(function(){
-                img.style.display = "block";
-            },100);
-            document.getElementById("actual").innerHTML = "Nenhum";
-            window.localStorage.setItem('theme', '');
-        } else if (themes.value == "bkg1"){
-            img.src = "./backgrounds/Mobile/background-1.png";
-            setTimeout(function(){
-                img.style.display = "block";
-            },100);
-            document.getElementById("actual").innerHTML = "Ondas 1";
-            window.localStorage.setItem('theme', './backgrounds/Mobile/background-1.png');
-        } else if (themes.value == "bkg2"){
-            img.src = "./backgrounds/Mobile/background-2.png";
-            setTimeout(function(){
-                img.style.display = "block";
-            },100);
-            document.getElementById("actual").innerHTML = "Ondas 2";
-            window.localStorage.setItem('theme', './backgrounds/Mobile/background-2.png');
-        } else if (themes.value == "bkg3"){
-            img.src = "./backgrounds/Mobile/background-3.png";
-            setTimeout(function(){
-                img.style.display = "block";
-            },100);
-            document.getElementById("actual").innerHTML = "Ondas 3";
-            window.localStorage.setItem('theme', './backgrounds/Mobile/background-3.png');
-        } else if (themes.value == "bkg4"){
-            img.src = "./backgrounds/Mobile/background-4.png";
-            setTimeout(function(){
-                img.style.display = "block";
-            },100);
-            document.getElementById("actual").innerHTML = "Ondas 4";
-            window.localStorage.setItem('theme', './backgrounds/Mobile/background-4.png');
-        } else if (themes.value == "bkg5"){
-            img.src = "./backgrounds/Mobile/background-5.png";
-            setTimeout(function(){
-                img.style.display = "block";
-            },100);
-            document.getElementById("actual").innerHTML = "Ondas 5";
-            window.localStorage.setItem('theme', './backgrounds/Mobile/background-5.png');
-        } else if (themes.value == "bkg6"){
-            img.src = "./backgrounds/Mobile/background-6.png";
-            setTimeout(function(){
-                img.style.display = "block";
-            },100);
-            document.getElementById("actual").innerHTML = "Ondas 6";
-            window.localStorage.setItem('theme', './backgrounds/Mobile/background-6.png');
-        } else if (themes.value == "bkg7"){
-            img.src = "./backgrounds/Mobile/background-7.png";
-            setTimeout(function(){
-                img.style.display = "block";
-            },100);
-            document.getElementById("actual").innerHTML = "Ondas 7";
-            window.localStorage.setItem('theme', './backgrounds/Mobile/background-7.png');
-        } else if (themes.value == "bkg7"){
-            img.src = "./backgrounds/Mobile/background-8.png";
-            setTimeout(function(){
-                img.style.display = "block";
-            },100);
-            document.getElementById("actual").innerHTML = "Ondas 8";
-            window.localStorage.setItem('theme', './backgrounds/Mobile/background-8.png');
+    img.style.display = "none";
+    for(i = 0; i < themes.length; i++){
+        var x = window.matchMedia("(max-width: 800px)");
+        var device;
+        var n;
+        if(x.matches){
+            device = "Mobile"
+        } else{
+            device = "Desktop"
         }
-    } else {
         if(themes.value == "none"){
             img.src = "";
             setTimeout(function(){
-                img.style.display = "block";
+                img.style.display = "none";
             },100);
-            document.getElementById("actual").innerHTML = "Nenhum";
+            actual_theme.innerHTML = "Nenhum";
+            themes.value = "actual";
+            actual_background.innerHTML = "Nenhum";
+            background_themes.value = "actual";
             window.localStorage.setItem('theme', '');
-        } else if (themes.value == "bkg1"){
-            img.src = "./backgrounds/Desktop/background-1.png";
+        } else if (themes.value == `bkg${i}`){
+            img.src = `./backgrounds/${device}/background-${i}.png`;
             setTimeout(function(){
                 img.style.display = "block";
             },100);
-            document.getElementById("actual").innerHTML = "Ondas 1";
-            window.localStorage.setItem('theme', './backgrounds/Desktop/background-1.png');
-        } else if (themes.value == "bkg2"){
-            img.src = "./backgrounds/Desktop/background-2.png";
+            actual_theme.innerHTML = `${themes[i+1].innerHTML}`;
+            themes.value = "actual";
+            actual_background.innerHTML = `${background_themes[i+1].innerHTML}`;
+            background_themes.value = "actual";
+            window.localStorage.setItem('theme', `./backgrounds/${device}/background-${i}.png`);
+            n = i;
+        }
+    }
+    for(i= 0; i < options.length; i++){
+        if(themes.value == "none"){
+            options[i].setAttribute(`style`, `color: var(--theme${1});`);
+            options[9].setAttribute(`style`, `background-color: var(--theme${1}); color: #000000;`);
+            actual_color.innerHTML = `${color_themes[1].innerHTML}`;
+            color_themes.value = `actual`;
+            window.localStorage.setItem(`color_theme`, `var(--theme${1})`);
+        } else if (n == 8){
+            options[i].setAttribute(`style`, `color: var(--theme${n});`);
+            options[9].setAttribute(`style`, `background-color: var(--theme${n}); color: #000000;`);
+            actual_color.innerHTML = `${color_themes[n].innerHTML}`;
+            color_themes.value = `actual`;
+            window.localStorage.setItem(`color_theme`, `var(--theme${n})`);
+        } else {
+            options[i].setAttribute(`style`, `color: var(--theme${n});`);
+            options[9].setAttribute(`style`, `background-color: var(--theme${n});`);
+            actual_color.innerHTML = `${color_themes[n].innerHTML}`;
+            color_themes.value = `actual`;
+            window.localStorage.setItem(`color_theme`, `var(--theme${n})`);
+        }
+    }
+}
+function theme_background(){
+    let img = document.getElementById("img");
+    let themes = document.getElementById("themes");
+    let background_themes = document.getElementById("background_themes");
+    let actual_theme = document.getElementById("actual_theme");
+    let actual_background = document.getElementById("actual_background");
+    
+    img.style.display = "none";
+    for(i = 1; i < background_themes.length; i++){
+        var x = window.matchMedia("(max-width: 800px)");
+        var device;
+        if(x.matches){
+            device = "Mobile"
+        } else{
+            device = "Desktop"
+        }
+        if(background_themes.value == "none"){
+            img.src = "";
+            setTimeout(function(){
+                img.style.display = "none";
+            },100);
+            actual_background.innerHTML = "Nenhum";
+            background_themes.value = "actual";
+            actual_theme.innerHTML = "Personalizado";
+            themes.value = "actual";
+            window.localStorage.setItem('theme', '');
+        } else if (background_themes.value == `bkg${i}`){
+            img.src = `./backgrounds/${device}/background-${i}.png`;
             setTimeout(function(){
                 img.style.display = "block";
             },100);
-            document.getElementById("actual").innerHTML = "Ondas 2";
-            window.localStorage.setItem('theme', './backgrounds/Desktop/background-2.png');
-        } else if (themes.value == "bkg3"){
-            img.src = "./backgrounds/Desktop/background-3.png";
-            setTimeout(function(){
-                img.style.display = "block";
-            },100);
-            document.getElementById("actual").innerHTML = "Ondas 3";
-            window.localStorage.setItem('theme', './backgrounds/Desktop/background-3.png');
-        } else if (themes.value == "bkg4"){
-            img.src = "./backgrounds/Desktop/background-4.png";
-            setTimeout(function(){
-                img.style.display = "block";
-            },100);
-            document.getElementById("actual").innerHTML = "Ondas 4";
-            window.localStorage.setItem('theme', './backgrounds/Desktop/background-4.png');
-        } else if (themes.value == "bkg5"){
-            img.src = "./backgrounds/Desktop/background-5.png";
-            setTimeout(function(){
-                img.style.display = "block";
-            },100);
-            document.getElementById("actual").innerHTML = "Ondas 5";
-            window.localStorage.setItem('theme', './backgrounds/Desktop/background-5.png');
-        } else if (themes.value == "bkg6"){
-            img.src = "./backgrounds/Desktop/background-6.png";
-            setTimeout(function(){
-                img.style.display = "block";
-            },100);
-            document.getElementById("actual").innerHTML = "Ondas 6";
-            window.localStorage.setItem('theme', './backgrounds/Desktop/background-6.png');
-        } else if (themes.value == "bkg7"){
-            img.src = "./backgrounds/Desktop/background-7.png";
-            setTimeout(function(){
-                img.style.display = "block";
-            },100);
-            document.getElementById("actual").innerHTML = "Ondas 7";
-            window.localStorage.setItem('theme', './backgrounds/Desktop/background-7.png');
-        } else if (themes.value == "bkg7"){
-            img.src = "./backgrounds/Desktop/background-8.png";
-            setTimeout(function(){
-                img.style.display = "block";
-            },100);
-            document.getElementById("actual").innerHTML = "Ondas 8";
-            window.localStorage.setItem('theme', './backgrounds/Desktop/background-8.png');
+            actual_background.innerHTML = `${background_themes[i].innerHTML}`;
+            background_themes.value = "actual";
+            actual_theme.innerHTML = "Personalizado";
+            themes.value = "actual";
+            window.localStorage.setItem('theme', `./backgrounds/${device}/background-${i}.png`);
         }
     }
 }
 function theme_calc(){
     let options = document.getElementsByClassName("option");
-    let themes = document.getElementById("color_themes");
+    let actual_color = document.getElementById("actual_color");
+    let themes = document.getElementById("themes");
+    let color_themes = document.getElementById("color_themes");
+    let actual_theme = document.getElementById("actual_theme");
+
     for(i= 0; i < options.length; i++){
-        if(themes.value == "color1"){
+        if(color_themes.value == "color1"){
             options[i].setAttribute("style", "color: var(--theme1);");
             options[9].setAttribute("style", "background-color: var(--theme1);");
-            document.getElementById("actual_theme").innerHTML = "Azul-Claro";
+            actual_color.innerHTML = "Azul-Claro";
             window.localStorage.setItem('color_theme', 'var(--theme1)');
-        } else if (themes.value == "color2"){
+        } else if (color_themes.value == "color2"){
             options[i].setAttribute("style", "color: var(--theme2);")
             options[9].setAttribute("style", "background-color: var(--theme2);");
-            document.getElementById("actual_theme").innerHTML = "Laranja";
+            actual_color.innerHTML = "Laranja";
             window.localStorage.setItem('color_theme', 'var(--theme2)');
-        } else if (themes.value == "color3"){
+        } else if (color_themes.value == "color3"){
             options[i].setAttribute("style", "color: var(--theme3);")
             options[9].setAttribute("style", "background-color: var(--theme3);");
-            document.getElementById("actual_theme").innerHTML = "Amarelo";
+            actual_color.innerHTML = "Amarelo";
             window.localStorage.setItem('color_theme', 'var(--theme3)');
-        } else if (themes.value == "color4"){
+        } else if (color_themes.value == "color4"){
             options[i].setAttribute("style", "color: var(--theme4);")
             options[9].setAttribute("style", "background-color: var(--theme4);");
-            document.getElementById("actual_theme").innerHTML = "Azul-Escuro";
+            actual_color.innerHTML = "Azul-Escuro";
             window.localStorage.setItem('color_theme', 'var(--theme4)');
-        } else if (themes.value == "color5"){
+        } else if (color_themes.value == "color5"){
             options[i].setAttribute("style", "color: var(--theme5);")
             options[9].setAttribute("style", "background-color: var(--theme5);");
-            document.getElementById("actual_theme").innerHTML = "Verde";
+            actual_color.innerHTML = "Verde";
             window.localStorage.setItem('color_theme', 'var(--theme5)');
-        } else if (themes.value == "color6"){
+        } else if (color_themes.value == "color6"){
             options[i].setAttribute("style", "color: var(--theme6);")
             options[9].setAttribute("style", "background-color: var(--theme6);");
-            document.getElementById("actual_theme").innerHTML = "Vermelho";
+            actual_color.innerHTML = "Vermelho";
             window.localStorage.setItem('color_theme', 'var(--theme6)');
-        } else if (themes.value == "color7"){
+        } else if (color_themes.value == "color7"){
             options[i].setAttribute("style", "color: var(--theme7);")
             options[9].setAttribute("style", "background-color: var(--theme7);");
-            document.getElementById("actual_theme").innerHTML = "Roxo";
+            actual_color.innerHTML = "Roxo";
             window.localStorage.setItem('color_theme', 'var(--theme7)');
+        } else if (color_themes.value == "color8"){
+            options[i].setAttribute("style", "color: var(--theme8);")
+            options[9].setAttribute("style", "background-color: var(--theme8); color: #000000;");
+            actual_color.innerHTML = "Branco";
+            window.localStorage.setItem('color_theme', 'var(--theme8)');
         }
     }
+    color_themes.value = `actual`;
+    actual_theme.innerHTML = "Personalizado";
+    themes.value = "actual";
 
 }
 
@@ -599,6 +598,9 @@ function show_config(){
     let contain = document.getElementById("contain");
     let button = document.getElementById("gear");
     let show = document.getElementById("show");
+    let personalize = document.getElementById("contain-hidden")
+    let button_personalize = document.getElementById("personalizar");
+    
     if(config.style.display == "none"){
         options.setAttribute("style","-webkit-animation-name: show; animation-name: show");
         button.setAttribute("style","transform: rotate(60deg); transition: 1s;");
@@ -614,8 +616,23 @@ function show_config(){
         setTimeout(function(){
             config.style.display = "none";
             contain.setAttribute("style","transform: translate(100%, 0);");
+            if(personalize.style.display == "block"){
+                personalize.style.display = "none";
+                button_personalize.value = "Personalizar";
+            }
         },100);
         
+    }   
+}
+function show_personalize(){
+    let button = document.getElementById("contain-hidden");
+    let button_id = document.getElementById("personalizar");
+    if(button.style.display == "none"){
+        button.style.display = "block";
+        button_id.value = "Fechar Menu";
+    } else {
+        button.style.display = "none";
+        button_id.value = "Personalizar";
     }   
 }
 function show_button(button_id){

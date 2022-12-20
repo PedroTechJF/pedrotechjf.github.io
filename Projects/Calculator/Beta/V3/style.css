@@ -20,6 +20,7 @@ border-radius: 10px;
     --theme5: #24d324;
     --theme6: #c02024;
     --theme7: #8a20c6;
+    --theme8: #ffffff;
 }
 @font-face {
     font-family: Inter;
@@ -65,7 +66,10 @@ border-radius: 10px;
 
 html, body{
     background: #1a1a1a;
-    margin:0px; 
+    margin:0px;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 .loader {
     width: 48px;
@@ -284,6 +288,14 @@ h2{
     width: 100%;
     font-family: Inter;
     text-align: end;
+    -webkit-user-select: all;
+    -ms-user-select: all;
+    user-select: all;
+}
+#res{
+    -webkit-user-select: all;
+    -ms-user-select: all;
+    user-select: all;
 }
 #calcs:focus{
     border-color: black;
@@ -406,7 +418,18 @@ h2{
     left: 94px;
     transform: translate(-50%, -50%);
 }
-#submit{
+.options_menu .color-box{
+    width: 14px;
+    height: 14px;
+    display: inline-block;
+    background-color: #ccc;
+    position: relative;
+    border-radius: 50%;
+    top: 2px;
+    left: 5px;
+}
+.submit{
+    display: flex;
     font-family: Inter;
     border-radius: 10px;
     background: white;
