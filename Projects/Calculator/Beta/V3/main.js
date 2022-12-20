@@ -16,14 +16,22 @@ function loader_calc(){
         document.getElementById("img").src = theme;
         if (theme == ""){
             document.getElementById("actual").innerHTML = "Nenhum";
-        } else if (theme.includes("background-1.svg")){
-            document.getElementById("actual").innerHTML = "Gradiente 1";
-        } else if (theme.includes("background-2.svg")){
-            document.getElementById("actual").innerHTML = "Gradiente 2";
-        } else if (theme.includes("background-3.svg")){
-            document.getElementById("actual").innerHTML = "Gradiente 3";
-        } else if (theme.includes("background-4.svg")){
-            document.getElementById("actual").innerHTML = "Gradiente 4";
+        } else if (theme.includes("background-1.png")){
+            document.getElementById("actual").innerHTML = "Ondas 1";
+        } else if (theme.includes("background-2.png")){
+            document.getElementById("actual").innerHTML = "Ondas 2";
+        } else if (theme.includes("background-3.png")){
+            document.getElementById("actual").innerHTML = "Ondas 3";
+        } else if (theme.includes("background-4.png")){
+            document.getElementById("actual").innerHTML = "Ondas 4";
+        } else if (theme.includes("background-5.png")){
+            document.getElementById("actual").innerHTML = "Ondas 5";
+        } else if (theme.includes("background-6.png")){
+            document.getElementById("actual").innerHTML = "Ondas 6";
+        } else if (theme.includes("background-7.png")){
+            document.getElementById("actual").innerHTML = "Ondas 7";
+        } else if (theme.includes("background-8.png")){
+            document.getElementById("actual").innerHTML = "Ondas 8";
         }
     } else {
         document.getElementById("img").src = "";
@@ -87,14 +95,22 @@ function loader_about(){
         document.getElementById("img").src = theme;
         if (theme == ""){
             document.getElementById("actual").innerHTML = "Nenhum";
-        } else if (theme.includes("background-1.svg")){
-            document.getElementById("actual").innerHTML = "Gradiente 1";
-        } else if (theme.includes("background-2.svg")){
-            document.getElementById("actual").innerHTML = "Gradiente 2";
-        } else if (theme.includes("background-3.svg")){
-            document.getElementById("actual").innerHTML = "Gradiente 3";
-        } else if (theme.includes("background-4.svg")){
-            document.getElementById("actual").innerHTML = "Gradiente 4";
+        } else if (theme.includes("background-1.png")){
+            document.getElementById("actual").innerHTML = "Ondas 1";
+        } else if (theme.includes("background-2.png")){
+            document.getElementById("actual").innerHTML = "Ondas 2";
+        } else if (theme.includes("background-3.png")){
+            document.getElementById("actual").innerHTML = "Ondas 3";
+        } else if (theme.includes("background-4.png")){
+            document.getElementById("actual").innerHTML = "Ondas 4";
+        } else if (theme.includes("background-5.png")){
+            document.getElementById("actual").innerHTML = "Ondas 5";
+        } else if (theme.includes("background-6.png")){
+            document.getElementById("actual").innerHTML = "Ondas 6";
+        } else if (theme.includes("background-7.png")){
+            document.getElementById("actual").innerHTML = "Ondas 7";
+        } else if (theme.includes("background-8.png")){
+            document.getElementById("actual").innerHTML = "Ondas 8";
         }
     } else {
         document.getElementById("img").src = "";
@@ -153,14 +169,22 @@ function loader_versions(){
         document.getElementById("img").src = theme;
         if (theme == ""){
             document.getElementById("actual").innerHTML = "Nenhum";
-        } else if (theme.includes("background-1.svg")){
-            document.getElementById("actual").innerHTML = "Gradiente 1";
-        } else if (theme.includes("background-2.svg")){
-            document.getElementById("actual").innerHTML = "Gradiente 2";
-        } else if (theme.includes("background-3.svg")){
-            document.getElementById("actual").innerHTML = "Gradiente 3";
-        } else if (theme.includes("background-4.svg")){
-            document.getElementById("actual").innerHTML = "Gradiente 4";
+        } else if (theme.includes("background-1.png")){
+            document.getElementById("actual").innerHTML = "Ondas 1";
+        } else if (theme.includes("background-2.png")){
+            document.getElementById("actual").innerHTML = "Ondas 2";
+        } else if (theme.includes("background-3.png")){
+            document.getElementById("actual").innerHTML = "Ondas 3";
+        } else if (theme.includes("background-4.png")){
+            document.getElementById("actual").innerHTML = "Ondas 4";
+        } else if (theme.includes("background-5.png")){
+            document.getElementById("actual").innerHTML = "Ondas 5";
+        } else if (theme.includes("background-6.png")){
+            document.getElementById("actual").innerHTML = "Ondas 6";
+        } else if (theme.includes("background-7.png")){
+            document.getElementById("actual").innerHTML = "Ondas 7";
+        } else if (theme.includes("background-8.png")){
+            document.getElementById("actual").innerHTML = "Ondas 8";
         }
     } else {
         document.getElementById("img").src = "";
@@ -295,134 +319,97 @@ function check(){
 
     if (calcs.value.includes(letters) == false){
         calcs.value = calcs.value.slice(0, calcs.value.length - 1);
-    } else if (calcs.value.includes("√") == true && numbers.length > 1){
+    } else if( (calcs.value == "" && res.innerHTML == "=")){
+        alert("Você precisa digitar alguns números...");
+        calcs.focus();
+        if (x.matches) {
+            calcs.setAttribute("onclick", "blur();");
+            calcs.setAttribute("readonly", "");
+        }
+    } else if(operators[0].length > 1 && numbers.length == 0){
         calcs.value = calcs.value.slice(0, calcs.value.length - 1);
-    } else if( (res.innerHTML == "=" && calcs.value.charAt(0) == operators) && (operators.length > 1)){
+    } else if (calcs.value.charAt(0) != "-" && calcs.value.charAt(0) == operators && numbers.length > 1){
+        calcs.value = calcs.value.slice(0, calcs.value.length - 1);
+    } else if(res.innerHTML == "=" && (calcs.value.charAt(0) == "-" || calcs.value.charAt(0) == "√") && operators[1].length > 0){
         equal();
         calcs.value = operators[1];
-        console.log(1);
-    } else if( (res.innerHTML == "=" && calcs.value.charAt(0) == numbers) && (calcs.value.includes(operators[0]) && calcs.value.includes(numbers[0]))){
+    } else if(res.innerHTML == "=" && operators[0].length > 0 && operators[0] == "√"){
+        equal();
+        calcs.value = "";
+    } else if(res.innerHTML == "=" && operators[0].length > 0 && numbers.length > 0){
         equal();
         calcs.value = operators[0];
-        console.log(2);
-    } else if( (res.innerHTML != "=" && calcs.value.charAt(0) == numbers) && (calcs.value.includes(operators[1]))){
+    } else if(res.innerHTML != "=" && operators[1].length > 0 && operators[1] == "%"){
+        equal();
+        calcs.value = "";
+    } else if(res.innerHTML != "=" && operators[1].length > 0){
         equal();
         calcs.value = operators[1];
-        console.log(3);
-    } else if( (operators.length > 1 || operators[0].length > 1 || operators[1].length > 1 || numbers.length > 1) && (operators.includes("*-") == false || operators.includes("x-") == false || operators.includes("/-") == false || operators.includes("÷-") == false) ){
-        calcs.value = calcs.value.slice(0, calcs.value.length - 1);
     }
     
 }
 function equal(){
-    let calcs = document.getElementById("calcs").value;
+    let calcs = document.getElementById("calcs");
     let res = document.getElementById("res");
+    let operators = calcs.value.split(/[^√%/÷*x+-]/).filter(Boolean);
+    let numbers = calcs.value.split(/[^.0-9]/).filter(Boolean).map(Number);
+    let result = res.innerHTML.split(/[^.0-9]/).filter(Boolean).map(Number);
     var x = window.matchMedia("(max-width: 800px)");
-    let operators = calcs.split(/[^√%/÷*x+-]/).filter(Boolean);
-    let numbers = calcs.split(/[^.0-9]/).filter(Boolean).map(Number);
 
-    if(calcs == ""){
+    if(numbers.length == 0){
         return
-    } else if( (calcs.value == "0" && res.innerHTML == "=")){
-        alert("Você precisa digitar alguns números...");
-        document.getElementById('calcs').focus();
-        if (x.matches) {
-            document.getElementById('calcs').setAttribute("onclick", "blur();");
-            document.getElementById('calcs').setAttribute("readonly", "");
-        }
-        return
-    } else if (calcs.includes("%") == true) {
-        per = calcs.split(/[^.0-9]/).filter(Boolean).map(Number);
-        result = res.innerHTML.split(/[^.0-9-]/).filter(Boolean).map(Number);
-        if (calcs.includes("+")){
-            if(per.length == 1 && operators.length > 1 < 3 && result.length == 0){
-                res.innerHTML = '=' + 0;
-                res.setAttribute("style", "display: block;");
-                document.getElementById("calcs").value = "";
-            } else if (per.length == 2) {
-                res.innerHTML = '=' + `${Number(per[0]) * Number(per[1]) / 100 + per[0]}`;
-                res.setAttribute("style", "display: block;");
-                document.getElementById("calcs").value = "";
-            } else if (calcs.charAt(0) == "-"){
-                let r = result[0] + per[0];
-                console.log(r);
-                console.log(result[0]);
-                console.log(per[0]);
-                res.innerHTML = '=' + `${-Number(per[0]) * Number(r) / 100 + r}`;
-                console.log(res.innerHTML);
-                res.setAttribute("style", "display: block;");
-                document.getElementById("calcs").value = "";
-            } else {
-                let r = result[0] - per[0];
-                res.innerHTML = '=' + `${Number(per[0]) * Number(r) / 100 + r}`;
-                res.setAttribute("style", "display: block;");
-                document.getElementById("calcs").value = "";
-            }
-        } else if (calcs.includes("-")){
-            if(per.length == 1 && operators.length > 1 < 3 && result.length == 0){
-                res.innerHTML = '=' + 0;
-                res.setAttribute("style", "display: block;");
-                document.getElementById("calcs").value = "";
-            } else if (per.length == 2) {
-                res.innerHTML = '=' + `${-Number(per[0]) * Number(per[1]) / 100 + per[0]}`;
-                res.setAttribute("style", "display: block;");
-                document.getElementById("calcs").value = "";
-            } else if (calcs.charAt(0) == "-"){
-                let r = result[0] + per[0];
-                console.log(r);
-                console.log(result[0]);
-                console.log(per[0]);
-                res.innerHTML = '=' + `${-Number(per[0]) * Number(r) / 100 + r}`;
-                console.log(res.innerHTML);
-                res.setAttribute("style", "display: block;");
-                document.getElementById("calcs").value = "";
-            } else {
-                let r = result[0] - per[0];
-                res.innerHTML = '=' + `${-Number(per[0]) * Number(r) / 100 + r}`;
-                res.setAttribute("style", "display: block;");
-                document.getElementById("calcs").value = "";
-            }
-        }
-    
-        document.getElementById('calcs').focus();
-        if (x.matches) {
-            document.getElementById('calcs').setAttribute("onclick", "blur();");
-            document.getElementById('calcs').setAttribute("readonly", "");
-        }
-    }else if (calcs.includes("√") == true) {
-        result = res.innerHTML.split(/[^.0-9-]/).filter(Boolean).map(Number);
-        raiz = calcs.split(/[^.0-9]/).filter(Boolean).map(Number);
-        if (raiz.length == 1){
-            res.innerHTML = '=' + `${Math.sqrt(Number(raiz))}`;
-            res.setAttribute("style", "display: block;");
-            document.getElementById("calcs").value = "";
+    } else if(res.innerHTML == "=" && operators[0] == "-"){
+        r = -numbers[0];
+        res.innerHTML = '=' + r;
+    } else if(res.innerHTML != "=" && res.innerHTML.includes("-")){
+        if (operators[0] == "-" && operators[1] == "%"){
+            res.innerHTML = '=' + `${-result[0] * -numbers[0] / 100 - result[0]}`;
+        } else if (operators[0] != "-" && operators[1] == "%"){
+            res.innerHTML = '=' + `${-result[0] * numbers[0] / 100 - result[0]}`;
+        } else if (operators[0] == "x"){
+            r = (-result[0]) + "*" + numbers[0];
+            res.innerHTML = '=' + eval(r);
+        } else if (operators[0] == "÷"){
+            r = (-result[0]) + "/" + numbers[0];
+            res.innerHTML = '=' + eval(r);
         } else {
-            res.innerHTML = '=' + `${Math.sqrt(Number(result))}`;
-            res.setAttribute("style", "display: block;");
-            document.getElementById("calcs").value = "";
+            r = (-result[0]) + operators[0] + numbers[0];
+            res.innerHTML = '=' + eval(r);
         }
-        document.getElementById('calcs').focus();
-        if (x.matches) {
-            document.getElementById('calcs').setAttribute("onclick", "blur();");
-            document.getElementById('calcs').setAttribute("readonly", "");
-        }
-    } else {
-        result = res.innerHTML.split(/[^.0-9-]/).filter(Boolean).map(Number);
-        numbers = calcs.split(/[^.0-9-]/).filter(Boolean).map(Number);
-        if(res.innerHTML == "="){
+    } else if(res.innerHTML == "="){
+        if (operators[0] == "√"){
+            res.innerHTML = '=' + `${Math.sqrt(numbers[0])}`;
+        } else {
             r = numbers[0];
             res.innerHTML = '=' + r;
-            res.setAttribute("style", "display: block;");
-            document.getElementById("calcs").value = "";
+        }
+    } else if(res.innerHTML != "="){
+        if (operators[0] == "-" && operators[1] == "%"){
+            res.innerHTML = '=' + `${result[0] * -numbers[0] / 100 + result[0]}`;
+        } else if (operators[0] != "-" && operators[1] == "%"){
+            res.innerHTML = '=' + `${result[0] * numbers[0] / 100 + result[0]}`;
+        } else if (operators[0] == "√"){
+            res.innerHTML = '=' + `${Math.sqrt(result[0])}`;
+        } else if (operators[0] == "x"){
+            r = result[0] + "*" + numbers[0];
+            res.innerHTML = '=' + eval(r);
+        } else if (operators[0] == "÷"){
+            r = result[0] + "/" + numbers[0];
+            res.innerHTML = '=' + eval(r);
         } else {
             r = result[0] + operators[0] + numbers[0];
             res.innerHTML = '=' + eval(r);
-            res.setAttribute("style", "display: block;");
-            document.getElementById("calcs").value = "";
         }
-        
     }
-
+    res.setAttribute("style", "display: block;");
+    calcs.value = "";
+    calcs.focus();
+    var x = window.matchMedia("(max-width: 800px)")
+    if (x.matches) {
+        calcs.setAttribute("onclick", "blur();");
+        calcs.setAttribute("readonly", "");
+    }
+    
 }
 function theme(){
     let img = document.getElementById("img");
@@ -439,30 +426,61 @@ function theme(){
             document.getElementById("actual").innerHTML = "Nenhum";
             window.localStorage.setItem('theme', '');
         } else if (themes.value == "bkg1"){
-            img.src = "./backgrounds/Mobile/background-1.svg";
-            document.getElementById("actual").innerHTML = "Gradiente 1";
-            window.localStorage.setItem('theme', './backgrounds/Mobile/background-1.svg');
+            img.src = "./backgrounds/Mobile/background-1.png";
+            setTimeout(function(){
+                img.style.display = "block";
+            },100);
+            document.getElementById("actual").innerHTML = "Ondas 1";
+            window.localStorage.setItem('theme', './backgrounds/Mobile/background-1.png');
         } else if (themes.value == "bkg2"){
-            img.src = "./backgrounds/Mobile/background-2.svg";
+            img.src = "./backgrounds/Mobile/background-2.png";
             setTimeout(function(){
                 img.style.display = "block";
             },100);
-            document.getElementById("actual").innerHTML = "Gradiente 2";
-            window.localStorage.setItem('theme', './backgrounds/Mobile/background-2.svg');
+            document.getElementById("actual").innerHTML = "Ondas 2";
+            window.localStorage.setItem('theme', './backgrounds/Mobile/background-2.png');
         } else if (themes.value == "bkg3"){
-            img.src = "./backgrounds/Mobile/background-3.svg";
+            img.src = "./backgrounds/Mobile/background-3.png";
             setTimeout(function(){
                 img.style.display = "block";
             },100);
-            document.getElementById("actual").innerHTML = "Gradiente 3";
-            window.localStorage.setItem('theme', './backgrounds/Mobile/background-3.svg');
+            document.getElementById("actual").innerHTML = "Ondas 3";
+            window.localStorage.setItem('theme', './backgrounds/Mobile/background-3.png');
         } else if (themes.value == "bkg4"){
-            img.src = "./backgrounds/Mobile/background-4.svg";
+            img.src = "./backgrounds/Mobile/background-4.png";
             setTimeout(function(){
                 img.style.display = "block";
             },100);
-            document.getElementById("actual").innerHTML = "Gradiente 4";
-            window.localStorage.setItem('theme', './backgrounds/Mobile/background-4.svg');
+            document.getElementById("actual").innerHTML = "Ondas 4";
+            window.localStorage.setItem('theme', './backgrounds/Mobile/background-4.png');
+        } else if (themes.value == "bkg5"){
+            img.src = "./backgrounds/Mobile/background-5.png";
+            setTimeout(function(){
+                img.style.display = "block";
+            },100);
+            document.getElementById("actual").innerHTML = "Ondas 5";
+            window.localStorage.setItem('theme', './backgrounds/Mobile/background-5.png');
+        } else if (themes.value == "bkg6"){
+            img.src = "./backgrounds/Mobile/background-6.png";
+            setTimeout(function(){
+                img.style.display = "block";
+            },100);
+            document.getElementById("actual").innerHTML = "Ondas 6";
+            window.localStorage.setItem('theme', './backgrounds/Mobile/background-6.png');
+        } else if (themes.value == "bkg7"){
+            img.src = "./backgrounds/Mobile/background-7.png";
+            setTimeout(function(){
+                img.style.display = "block";
+            },100);
+            document.getElementById("actual").innerHTML = "Ondas 7";
+            window.localStorage.setItem('theme', './backgrounds/Mobile/background-7.png');
+        } else if (themes.value == "bkg7"){
+            img.src = "./backgrounds/Mobile/background-8.png";
+            setTimeout(function(){
+                img.style.display = "block";
+            },100);
+            document.getElementById("actual").innerHTML = "Ondas 8";
+            window.localStorage.setItem('theme', './backgrounds/Mobile/background-8.png');
         }
     } else {
         if(themes.value == "none"){
@@ -473,33 +491,61 @@ function theme(){
             document.getElementById("actual").innerHTML = "Nenhum";
             window.localStorage.setItem('theme', '');
         } else if (themes.value == "bkg1"){
-            img.src = "./backgrounds/Desktop/background-1.svg";
+            img.src = "./backgrounds/Desktop/background-1.png";
             setTimeout(function(){
                 img.style.display = "block";
             },100);
-            document.getElementById("actual").innerHTML = "Gradiente 1";
-            window.localStorage.setItem('theme', './backgrounds/Desktop/background-1.svg');
+            document.getElementById("actual").innerHTML = "Ondas 1";
+            window.localStorage.setItem('theme', './backgrounds/Desktop/background-1.png');
         } else if (themes.value == "bkg2"){
-            img.src = "./backgrounds/Desktop/background-2.svg";
+            img.src = "./backgrounds/Desktop/background-2.png";
             setTimeout(function(){
                 img.style.display = "block";
             },100);
-            document.getElementById("actual").innerHTML = "Gradiente 2";
-            window.localStorage.setItem('theme', './backgrounds/Desktop/background-2.svg');
+            document.getElementById("actual").innerHTML = "Ondas 2";
+            window.localStorage.setItem('theme', './backgrounds/Desktop/background-2.png');
         } else if (themes.value == "bkg3"){
-            img.src = "./backgrounds/Desktop/background-3.svg";
+            img.src = "./backgrounds/Desktop/background-3.png";
             setTimeout(function(){
                 img.style.display = "block";
             },100);
-            document.getElementById("actual").innerHTML = "Gradiente 3";
-            window.localStorage.setItem('theme', './backgrounds/Desktop/background-3.svg');
+            document.getElementById("actual").innerHTML = "Ondas 3";
+            window.localStorage.setItem('theme', './backgrounds/Desktop/background-3.png');
         } else if (themes.value == "bkg4"){
-            img.src = "./backgrounds/Desktop/background-4.svg";
+            img.src = "./backgrounds/Desktop/background-4.png";
             setTimeout(function(){
                 img.style.display = "block";
             },100);
-            document.getElementById("actual").innerHTML = "Gradiente 4";
-            window.localStorage.setItem('theme', './backgrounds/Desktop/background-4.svg');
+            document.getElementById("actual").innerHTML = "Ondas 4";
+            window.localStorage.setItem('theme', './backgrounds/Desktop/background-4.png');
+        } else if (themes.value == "bkg5"){
+            img.src = "./backgrounds/Desktop/background-5.png";
+            setTimeout(function(){
+                img.style.display = "block";
+            },100);
+            document.getElementById("actual").innerHTML = "Ondas 5";
+            window.localStorage.setItem('theme', './backgrounds/Desktop/background-5.png');
+        } else if (themes.value == "bkg6"){
+            img.src = "./backgrounds/Desktop/background-6.png";
+            setTimeout(function(){
+                img.style.display = "block";
+            },100);
+            document.getElementById("actual").innerHTML = "Ondas 6";
+            window.localStorage.setItem('theme', './backgrounds/Desktop/background-6.png');
+        } else if (themes.value == "bkg7"){
+            img.src = "./backgrounds/Desktop/background-7.png";
+            setTimeout(function(){
+                img.style.display = "block";
+            },100);
+            document.getElementById("actual").innerHTML = "Ondas 7";
+            window.localStorage.setItem('theme', './backgrounds/Desktop/background-7.png');
+        } else if (themes.value == "bkg7"){
+            img.src = "./backgrounds/Desktop/background-8.png";
+            setTimeout(function(){
+                img.style.display = "block";
+            },100);
+            document.getElementById("actual").innerHTML = "Ondas 8";
+            window.localStorage.setItem('theme', './backgrounds/Desktop/background-8.png');
         }
     }
 }

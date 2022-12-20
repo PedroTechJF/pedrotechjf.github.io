@@ -44,10 +44,14 @@
                             </optgroup>
                             <optgroup class="others_themes" label="Outros Temas">
                                 <option class= "options" value="none">Nenhum</option>
-                                <option class= "options" value="bkg1">Gradiente 1</option>
-                                <option class= "options" value="bkg2">Gradiente 2</option>
-                                <option class= "options" value="bkg3">Gradiente 3</option>
-                                <option class= "options" value="bkg4">Gradiente 4</option>
+                                <option class= "options" value="bkg1">Ondas 1</option>
+                                <option class= "options" value="bkg2">Ondas 2</option>
+                                <option class= "options" value="bkg3">Ondas 3</option>
+                                <option class= "options" value="bkg4">Ondas 4</option>
+                                <option class= "options" value="bkg5">Ondas 5</option>
+                                <option class= "options" value="bkg6">Ondas 6</option>  
+                                <option class= "options" value="bkg7">Ondas 7</option>
+                                <option class= "options" value="bkg8">Ondas 8</option>
                             </optgroup>
                         </select>
                     </div>
@@ -117,9 +121,9 @@
                 </div>
             </div>
     </div>
-    <div id="calc" class="calc">
+    <div id="calc" class="calc"  oninput="keyboardInput()">
         <input type="text" id="calcs" tabindex="-1" placeholder="0" oninput="check()"/>
-        <h2 class="result" id="res" onchange="keyboardInput()">=</h2>
+        <h2 class="result" id="res">=</h2>
         <div class="container">
             <div class="calc_options">
                 <a class="option" id="C" onclick="C()"><i class="fa-solid fa-c"></i></a>
@@ -148,7 +152,7 @@
     <div id="last_buttons" style="display: none;">
         <a href="sobre.html" class="b">Sobre o Desenvolvedor</a>
         <a href="versões.html" class="b">Versões Anteriores do Projeto</a>
-        <a href="https://pedrotechjf.github.io/" class="b">Outros Projetos</a>
+        <a href="../../" class="b">Outros Projetos</a>
     </div>
 </body>
 </html>
