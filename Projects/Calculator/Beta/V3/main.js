@@ -10,6 +10,23 @@ function loader_calc(){
     document.getElementById("last_buttons").style.display = "flex";
     document.getElementById("img").style.display = "block";
 
+    let history_menu = document.getElementById("history_menu");
+    let history_menu_save = window.localStorage.getItem("results");
+    let res = document.getElementById("res");
+    let res_save = window.localStorage.getItem("res");
+    let calcs = document.getElementById("calcs");
+    let calcs_save = window.localStorage.getItem("calcs");
+    let C = document.getElementById("C");
+    let CE = document.getElementById("CE");
+    if(history_menu_save != null){
+        history_menu.innerHTML = history_menu_save;
+    }
+    if (res_save != null){
+        res.innerHTML = res_save;
+        res.style.display = "block";
+        calcs.placeholder = calcs_save;
+    }
+
     let img = document.getElementById("img");
     let actual_theme = document.getElementById("actual_theme");
     let actual_background = document.getElementById("actual_background");
@@ -37,15 +54,14 @@ function loader_calc(){
     for(i= 0; i < options.length; i++){
         if(color_theme != null){
             options[i].setAttribute("style", `color: ${color_theme};`);
-            options[9].setAttribute("style", `background-color: ${color_theme};`);
+            options[10].setAttribute("style", `background-color: ${color_theme};`);
         } else if(color_theme == "var(--theme8s)"){
             options[i].setAttribute("style", `color: ${color_theme};`);
-            options[9].setAttribute("style", `background-color: ${color_theme}; color: #000000;`);
+            options[10].setAttribute("style", `background-color: ${color_theme}; color: #000000;`);
         } else {
             options[i].setAttribute("style", `color: var(--theme1);`);
-            options[9].setAttribute("style", `background-color: var(--theme1);`);
+            options[10].setAttribute("style", `background-color: var(--theme1);`);
         }
-        
     }
     if(color_theme != null){
         if(color_theme.includes("1")){
@@ -69,6 +85,10 @@ function loader_calc(){
     } else {
         actual_color.innerHTML = "Azul-Claro";
         color_themes.value = "actual";
+    }
+    if(res_save != null){
+        C.style.display = "block";
+        CE.style.display = "none";
     }
     if(navigator.userAgent.indexOf("Android") != -1){
         document.getElementById("android").setAttribute("style", "display: flex; top: 55px; position: absolute; z-index: 0");
@@ -120,13 +140,13 @@ function loader_about(){
     for(i= 0; i < options.length; i++){
         if(color_theme != null){
             options[i].setAttribute("style", `color: ${color_theme};`);
-            options[9].setAttribute("style", `background-color: ${color_theme};`);
+            options[10].setAttribute("style", `background-color: ${color_theme};`);
         } else if(color_theme == "var(--theme8s)"){
             options[i].setAttribute("style", `color: ${color_theme};`);
-            options[9].setAttribute("style", `background-color: ${color_theme}; color: #000000;`);
+            options[10].setAttribute("style", `background-color: ${color_theme}; color: #000000;`);
         } else {
             options[i].setAttribute("style", `color: var(--theme1);`);
-            options[9].setAttribute("style", `background-color: var(--theme1);`);
+            options[10].setAttribute("style", `background-color: var(--theme1);`);
         }
         
     }
@@ -198,13 +218,13 @@ function loader_versions(){
     for(i= 0; i < options.length; i++){
         if(color_theme != null){
             options[i].setAttribute("style", `color: ${color_theme};`);
-            options[9].setAttribute("style", `background-color: ${color_theme};`);
+            options[10].setAttribute("style", `background-color: ${color_theme};`);
         } else if(color_theme == "var(--theme8s)"){
             options[i].setAttribute("style", `color: ${color_theme};`);
-            options[9].setAttribute("style", `background-color: ${color_theme}; color: #000000;`);
+            options[10].setAttribute("style", `background-color: ${color_theme}; color: #000000;`);
         } else {
             options[i].setAttribute("style", `color: var(--theme1);`);
-            options[9].setAttribute("style", `background-color: var(--theme1);`);
+            options[10].setAttribute("style", `background-color: var(--theme1);`);
         }
         
     }
@@ -263,19 +283,49 @@ function addO(button_id) {
     check();
 }
 function C(){
-    document.getElementById("calcs").value = "";
-    document.getElementById("res").innerHTML = "";
-    res.setAttribute("style", "display: none;");
+    let res = document.getElementById("res");
+    let calcs = document.getElementById("calcs");
+    let C = document.getElementById("C");
+    let CE = document.getElementById("CE");
+
+    calcs.value = "";
+    calcs.placeholder = "0";
     res.innerHTML = "=";
-    document.getElementById('calcs').focus();
+    res.setAttribute("style", "display: none;");
+    C.style.display = "none";
+    CE.style.display = "flex";
+
+    calcs.focus();
     var x = window.matchMedia("(max-width: 800px)");
     let color_theme = window.localStorage.getItem("color_theme");
     if (x.matches) {
-        document.getElementById('calcs').setAttribute("onclick", "blur();");
-        document.getElementById('calcs').setAttribute("readonly", "");
-        document.getElementById("C").setAttribute("style", `background-color: rgba(209, 209, 209, 0.15); transform: scale(1.05); color: ${color_theme};`);
+        calcs.setAttribute("onclick", "blur();");
+        calcs.setAttribute("readonly", "");
+        C.setAttribute("style", `background-color: rgba(209, 209, 209, 0.15); transform: scale(1.05); color: ${color_theme};`);
         setTimeout(function(){
-            document.getElementById("C").setAttribute("style", `background-color: rgba(0, 0, 0, 0); transform: scale(1.0); color: ${color_theme};`);
+            C.setAttribute("style", `background-color: rgba(0, 0, 0, 0); transform: scale(1.0); color: ${color_theme}; display: none;`);
+        },250);
+    }
+}
+function CE(){
+    let calcs = document.getElementById("calcs");
+    let CE = document.getElementById("CE");
+    let history_menu = document.getElementById("history_menu");
+
+    history_menu.innerHTML = "";
+    window.localStorage.removeItem("results");
+    window.localStorage.removeItem("res");
+    window.localStorage.removeItem("calcs");
+
+    calcs.focus();
+    var x = window.matchMedia("(max-width: 800px)");
+    let color_theme = window.localStorage.getItem("color_theme");
+    if (x.matches) {
+        calcs.setAttribute("onclick", "blur();");
+        calcs.setAttribute("readonly", "");
+        CE.setAttribute("style", `background-color: rgba(209, 209, 209, 0.15); transform: scale(1.05); color: ${color_theme};`);
+        setTimeout(function(){
+            CE.setAttribute("style", `background-color: rgba(0, 0, 0, 0); transform: scale(1.0); color: ${color_theme};`);
         },250);
     }
 }
@@ -328,7 +378,6 @@ function check(){
     let numbers = calcs.value.split(/[^.0-9]/).filter(Boolean).map(Number);
     let letters = calcs.value.split(/([^0-9.√/%÷*x+-])/);
     let res = document.getElementById("res");
-
     if (calcs.value.includes(letters) == false){
         calcs.value = calcs.value.slice(0, calcs.value.length - 1);
     } else if((operators[0] != "*-" && operators[0] != "/-" && operators[0] !== "x-" && operators[0] != "÷-") && res.innerHTML != "=" && operators[0].length > 1){
@@ -338,7 +387,7 @@ function check(){
         calcs.value = "";
     } else if(operators[0].length > 1 && numbers.length == 0){
         calcs.value = calcs.value.slice(0, calcs.value.length - 1);
-    } else if (calcs.value.charAt(0) != "-" && calcs.value.charAt(0) == operators && numbers.length > 1){
+    } else if (res.innerHTML == "=" && calcs.value.charAt(0) != "-" && calcs.value.charAt(0) == operators){
         calcs.value = calcs.value.slice(0, calcs.value.length - 1);
     } else if(res.innerHTML == "=" && (calcs.value.charAt(0) == "-" || calcs.value.charAt(0) == "√") && operators[1].length > 0){
         equal();
@@ -350,6 +399,9 @@ function check(){
         equal();
         calcs.value = operators[0];
     } else if(res.innerHTML != "=" && operators[1].length > 0 && operators[1] == "%"){
+        equal();
+        calcs.value = "";
+    } else if(res.innerHTML != "=" && operators[1].length > 0 && operators[1] == "√"){
         equal();
         calcs.value = "";
     } else if(res.innerHTML != "=" && operators[1].length > 0){
@@ -364,14 +416,27 @@ function equal(){
     let operators = calcs.value.split(/[^√%/÷*x+-]/).filter(Boolean);
     let numbers = calcs.value.split(/[^.0-9]/).filter(Boolean).map(Number);
     let result = res.innerHTML.split(/[^.0-9]/).filter(Boolean).map(Number);
+    let history_menu = document.getElementById("history_menu");
+    let C = document.getElementById("C");
+    let CE = document.getElementById("CE");
     var x = window.matchMedia("(max-width: 800px)");
 
-    if(numbers.length == 0){
+    if(calcs.value == ""){
         return
-    } else if( (calcs.value == "" && res.innerHTML == "=")){
+    } else if( (calcs.value.includes(operators) && numbers.length == 0) && (calcs.value.includes("√") == false && res.innerHTML == "=")){
         alert("Você precisa digitar alguns números...");
         calcs.focus();
-        var x = window.matchMedia("(max-width: 800px)") 
+        if (x.matches) {
+            calcs.setAttribute("onclick", "blur();");
+            calcs.setAttribute("readonly", "");
+        }
+        return
+    }
+    if(calcs.value.includes(operators[0]) == false && res.innerHTML == "="){
+        res.innerHTML = "=" + numbers[0];
+        res.setAttribute("style", "display: block;");
+        calcs.value = "";
+        calcs.focus();
         if (x.matches) {
             calcs.setAttribute("onclick", "blur();");
             calcs.setAttribute("readonly", "");
@@ -379,9 +444,11 @@ function equal(){
     } else if(res.innerHTML == "=" && operators[0] == "-" && operators[1] == undefined){
         r = numbers[0];
         res.innerHTML = '=' + r;
+        res.setAttribute("style", "display: block;");
     } else if(res.innerHTML == "=" && operators[0] == "-" && operators[1] != undefined){
         r = -numbers[0];
         res.innerHTML = '=' + r;
+        res.setAttribute("style", "display: block;");
     } else if(res.innerHTML != "=" && res.innerHTML.includes("-")){
         if (operators[0] == "-" && operators[1] == "%"){
             res.innerHTML = '=' + `${-result[0] * -numbers[0] / 100 - result[0]}`;
@@ -397,20 +464,18 @@ function equal(){
             r = (-result[0]) + operators[0] + numbers[0];
             res.innerHTML = '=' + eval(r);
         }
-    } else if(res.innerHTML == "="){
-        if (operators[0] == "√"){
-            res.innerHTML = '=' + `${Math.sqrt(numbers[0])}`;
-        } else {
-            r = numbers[0];
-            res.innerHTML = '=' + r;
-        }
+        res.setAttribute("style", "display: block;");
     } else if(res.innerHTML != "="){
         if (operators[0] == "-" && operators[1] == "%"){
             res.innerHTML = '=' + `${result[0] * -numbers[0] / 100 + result[0]}`;
         } else if (operators[0] != "-" && operators[1] == "%"){
             res.innerHTML = '=' + `${result[0] * numbers[0] / 100 + result[0]}`;
+        } else if (operators[0] == "%"){
+            res.innerHTML = '=' + 0;
         } else if (operators[0] == "√"){
             res.innerHTML = '=' + `${Math.sqrt(result[0])}`;
+        } else if (operators[1] == "√"){
+            res.innerHTML = '=' + `${result[0] + Math.sqrt(numbers[0])}`;
         } else if (operators[0] == "x"){
             r = result[0] + "*" + numbers[0];
             res.innerHTML = '=' + eval(r);
@@ -421,16 +486,85 @@ function equal(){
             r = result[0] + operators[0] + numbers[0];
             res.innerHTML = '=' + eval(r);
         }
+        res.setAttribute("style", "display: block;");
+    } else if(res.innerHTML == "="){ 
+        if(operators[0] == "√"){
+            res.innerHTML = '=' + `${Math.sqrt(numbers[0])}`;
+        } else{
+            res.innerHTML = '=' + `${numbers[0]}`;
+        }
+        res.setAttribute("style", "display: block;");
     }
-    res.setAttribute("style", "display: block;");
+    function createElement(){
+        var n;
+        if (res.innerHTML.includes(".")){
+            n = res.innerHTML.split(".");
+            console.log(n);
+            if (n[1].length > 8){
+                n[1] = n[1].slice(0, 8);
+            }
+            res.innerHTML = n[0] + "." + n[1];
+        }
+        if(operators[0] == "*"){
+            operators[0] = "x";
+        } else if(operators[0] == "/"){
+            operators[0] = "÷";
+        } else if(operators[0] == "*-" || operators[0] == "x-"){
+            operators[0] = "x";
+            numbers[0] = "(-" + numbers[0] + ")" ;
+        } else if(operators[0] == "/-" || operators[0] == "÷-"){
+            operators[0] = "÷";
+            numbers[0] = "(-" + numbers[0] + ")" ;
+        }
+        const c_r = document.createElement("div");
+            c_r.className = "c&r";
+        const h2_1 = document.createElement("h2");
+            h2_1.className = "calcs";
+            h2_1.id = "ress";
+            if(history_menu.childElementCount == 0){
+                if(operators[0] == "-"){
+                    h2_1.innerHTML = operators[0] + numbers[0];
+                } else {
+                    h2_1.innerHTML = numbers[0];
+                }
+            } else if (operators[1] != undefined && operators[1] == "√" || operators[1] == "%") {
+                h2_1.innerHTML = result[0] + operators[0] + numbers[0] + operators[1];
+            } else if(result[0] != undefined){
+                h2_1.innerHTML = result[0] + operators[0] + numbers[0];
+            } else if(operators[0] != undefined) {
+                h2_1.innerHTML = operators[0] + numbers[0];
+            } else {
+                h2_1.innerHTML = numbers[0];
+            }
+        const h2_2 = document.createElement("h2");
+            h2_2.className = "results";
+            h2_2.id = "ress";
+            h2_2.innerHTML = res.innerHTML;
+        c_r.appendChild(h2_1);
+        c_r.appendChild(h2_2);
+        history_menu.appendChild(c_r);
+        const h_f= history_menu.lastElementChild;
+            h_f.firstElementChild.style.color = "white";
+            h_f.lastElementChild.style.color = "white";
+        const h_l= history_menu.firstElementChild;
+            h_l.firstElementChild.style.color = "#c9c9c9";
+            h_l.lastElementChild.style.color = "#c9c9c9";
+        history_menu.insertBefore(history_menu.lastElementChild, history_menu.children[0]);
+        window.localStorage.setItem("results", history_menu.innerHTML);
+        window.localStorage.setItem("res", h_f.lastElementChild.innerHTML);
+        window.localStorage.setItem("calcs", h_f.firstElementChild.innerHTML);
+        calcs.placeholder = h_f.firstElementChild.innerHTML;
+    };
+    createElement();
     calcs.value = "";
     calcs.focus();
+    C.style.display = "block";
+    CE.style.display = "none";
     var x = window.matchMedia("(max-width: 800px)")
     if (x.matches) {
         calcs.setAttribute("onclick", "blur();");
         calcs.setAttribute("readonly", "");
     }
-    
 }
 function theme(){
     let img = document.getElementById("img");
@@ -476,21 +610,20 @@ function theme(){
         }
     }
     for(i= 0; i < options.length; i++){
-        if(themes.value == "none"){
-            options[i].setAttribute(`style`, `color: var(--theme${1});`);
-            options[9].setAttribute(`style`, `background-color: var(--theme${1}); color: #000000;`);
-            actual_color.innerHTML = `${color_themes[1].innerHTML}`;
-            color_themes.value = `actual`;
-            window.localStorage.setItem(`color_theme`, `var(--theme${1})`);
+        if(actual_theme.innerHTML == "Nenhum"){
+            options[i].setAttribute("style", "color: var(--theme1);");
+            options[10].setAttribute("style", "background-color: var(--theme1);");
+            actual_color.innerHTML = "Azul-Claro";
+            window.localStorage.setItem('color_theme', 'var(--theme1)');
         } else if (n == 8){
             options[i].setAttribute(`style`, `color: var(--theme${n});`);
-            options[9].setAttribute(`style`, `background-color: var(--theme${n}); color: #000000;`);
+            options[10].setAttribute(`style`, `background-color: var(--theme${n}); color: #000000;`);
             actual_color.innerHTML = `${color_themes[n].innerHTML}`;
             color_themes.value = `actual`;
             window.localStorage.setItem(`color_theme`, `var(--theme${n})`);
         } else {
             options[i].setAttribute(`style`, `color: var(--theme${n});`);
-            options[9].setAttribute(`style`, `background-color: var(--theme${n});`);
+            options[10].setAttribute(`style`, `background-color: var(--theme${n});`);
             actual_color.innerHTML = `${color_themes[n].innerHTML}`;
             color_themes.value = `actual`;
             window.localStorage.setItem(`color_theme`, `var(--theme${n})`);
@@ -546,52 +679,52 @@ function theme_calc(){
     for(i= 0; i < options.length; i++){
         if(color_themes.value == "color1"){
             options[i].setAttribute("style", "color: var(--theme1);");
-            options[9].setAttribute("style", "background-color: var(--theme1);");
+            options[10].setAttribute("style", "background-color: var(--theme1);");
             actual_color.innerHTML = "Azul-Claro";
+            color_themes.value = "actual";
             window.localStorage.setItem('color_theme', 'var(--theme1)');
         } else if (color_themes.value == "color2"){
             options[i].setAttribute("style", "color: var(--theme2);")
-            options[9].setAttribute("style", "background-color: var(--theme2);");
+            options[10].setAttribute("style", "background-color: var(--theme2);");
             actual_color.innerHTML = "Laranja";
             window.localStorage.setItem('color_theme', 'var(--theme2)');
         } else if (color_themes.value == "color3"){
             options[i].setAttribute("style", "color: var(--theme3);")
-            options[9].setAttribute("style", "background-color: var(--theme3);");
+            options[10].setAttribute("style", "background-color: var(--theme3);");
             actual_color.innerHTML = "Amarelo";
             window.localStorage.setItem('color_theme', 'var(--theme3)');
         } else if (color_themes.value == "color4"){
             options[i].setAttribute("style", "color: var(--theme4);")
-            options[9].setAttribute("style", "background-color: var(--theme4);");
+            options[10].setAttribute("style", "background-color: var(--theme4);");
             actual_color.innerHTML = "Azul-Escuro";
             window.localStorage.setItem('color_theme', 'var(--theme4)');
         } else if (color_themes.value == "color5"){
             options[i].setAttribute("style", "color: var(--theme5);")
-            options[9].setAttribute("style", "background-color: var(--theme5);");
+            options[10].setAttribute("style", "background-color: var(--theme5);");
             actual_color.innerHTML = "Verde";
             window.localStorage.setItem('color_theme', 'var(--theme5)');
         } else if (color_themes.value == "color6"){
             options[i].setAttribute("style", "color: var(--theme6);")
-            options[9].setAttribute("style", "background-color: var(--theme6);");
+            options[10].setAttribute("style", "background-color: var(--theme6);");
             actual_color.innerHTML = "Vermelho";
             window.localStorage.setItem('color_theme', 'var(--theme6)');
         } else if (color_themes.value == "color7"){
             options[i].setAttribute("style", "color: var(--theme7);")
-            options[9].setAttribute("style", "background-color: var(--theme7);");
+            options[10].setAttribute("style", "background-color: var(--theme7);");
             actual_color.innerHTML = "Roxo";
             window.localStorage.setItem('color_theme', 'var(--theme7)');
         } else if (color_themes.value == "color8"){
             options[i].setAttribute("style", "color: var(--theme8);")
-            options[9].setAttribute("style", "background-color: var(--theme8); color: #000000;");
+            options[10].setAttribute("style", "background-color: var(--theme8); color: #000000;");
             actual_color.innerHTML = "Branco";
             window.localStorage.setItem('color_theme', 'var(--theme8)');
         }
     }
-    color_themes.value = `actual`;
+    color_themes.value = "actual";
     actual_theme.innerHTML = "Personalizado";
     themes.value = "actual";
 
 }
-
 function show_config(){
     let config = document.getElementById("config");
     let options = document.getElementById("options_menu");
@@ -602,7 +735,7 @@ function show_config(){
     let button_personalize = document.getElementById("personalizar");
     
     if(config.style.display == "none"){
-        options.setAttribute("style","-webkit-animation-name: show; animation-name: show");
+        options.setAttribute("style","-webkit-animation-name: show; animation-name: show;");
         button.setAttribute("style","transform: rotate(60deg); transition: 1s;");
         show.style.zIndex = 2;
         setTimeout(function(){
@@ -610,7 +743,7 @@ function show_config(){
             contain.setAttribute("style","transform: none");
         },100);
     } else {
-        options.setAttribute("style","-webkit-animation-name: ocult; animation-name: ocult");
+        options.setAttribute("style","-webkit-animation-name: ocult; animation-name: ocult;");
         button.setAttribute("style","transform: rotate(-60deg); transition: 1s;");
         show.style.zIndex = 0;
         setTimeout(function(){
@@ -628,22 +761,35 @@ function show_personalize(){
     let button = document.getElementById("contain-hidden");
     let button_id = document.getElementById("personalizar");
     if(button.style.display == "none"){
-        button.style.display = "block";
+        button.setAttribute("style","-webkit-animation-name: show; animation-name: show;");
         button_id.value = "Fechar Menu";
+        setTimeout(function(){
+            button.style.display = "block";
+        },300);
     } else {
-        button.style.display = "none";
-        button_id.value = "Personalizar";
+        button.setAttribute("style","-webkit-animation-name: ocult; animation-name: ocult;");
+        setTimeout(function(){
+            button.style.display = "none";
+            button_id.value = "Personalizar";
+        },300);
     }   
 }
 function show_button(button_id){
     let button = button_id;
+    let config = document.getElementById("config");
     if(button.style.display == "none"){
+        if(config.style.display != "none"){
+            show_config();
+        };
         button.setAttribute("style","-webkit-animation-name: show; animation-name: show;");
         document.getElementsByTagName("body")[0].setAttribute("style", "margin:0; overflow-y: hidden");
         if(button == feedback_menu){
             document.getElementById("feedback").style.zIndex = 2;
         } else if(button == coffee_menu){
             document.getElementById("coffee").style.zIndex = 2;
+        } else if(button == history_containner){
+            document.getElementById("history").style.zIndex = 2;
+            document.getElementById("history").style.color = "white";
         }
         setTimeout(function(){
             button.style.display = "flex";
@@ -653,14 +799,19 @@ function show_button(button_id){
         document.getElementsByTagName("body")[0].setAttribute("style", "margin:0");
         if(button == feedback_menu){
             document.getElementById("feedback").style.zIndex = 0;
+            setTimeout(function(){
+                document.getElementById("form_name").setAttribute("style", "border: 1px solid #e0e0e0");
+                document.getElementById("form_email").setAttribute("style", "border: 1px solid #e0e0e0");
+                document.getElementById("form_message").setAttribute("style", "border: 1px solid #e0e0e0");
+                document.getElementById("error_message").innerHTML = ""
+            },900);
         } else if(button == coffee_menu){
             document.getElementById("coffee").style.zIndex = 0;
+        } else if(button == history_containner){
+            document.getElementById("history").style.zIndex = 0;
+            document.getElementById("history").style.color = "black";
         }
         setTimeout(function(){
-            document.getElementById("form_name").setAttribute("style", "border: 1px solid #e0e0e0");
-            document.getElementById("form_email").setAttribute("style", "border: 1px solid #e0e0e0");
-            document.getElementById("form_message").setAttribute("style", "border: 1px solid #e0e0e0");
-            document.getElementById("error_message").innerHTML = ""
             button.style.display = "none";
         },900);
         

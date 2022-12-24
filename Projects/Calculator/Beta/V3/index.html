@@ -13,7 +13,6 @@
     <link rel="shortcut icon" href="favicon.svg">
     <link rel="stylesheet" href="style.css">
     <script src="main.js"></script>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8031703851017063" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
     <title>Início</title>
 </head>
@@ -110,13 +109,27 @@
     <div id="extra_buttons" style="display: none;">
         <a onclick='show_button(document.getElementById("coffee_menu"))' class="o" id="coffee"><i class="fa-solid fa-mug-saucer"></i></a>
             <div class="containner" id="coffee_menu" style="display: none;">
-                <h4 id="i">Pay Me a Coffee</h4>
-                <img src="img/PayPal_QR_Code.png" alt="QR Code" class="payment_img">
-                <h4 id="i" style="font-size: 18px; margin-top: 0;">PayPal - QR Code</h4>
-                <a href="https://www.paypal.com/donate/?business=8LLVHTSUGG3GC&no_recurring=0&item_name=Pay+Me+a+Coffee&currency_code=BRL" target="_blank" style="margin-top: 5px; background-color: rgb(255 255 255 / 70%); color:rgb(0, 0, 0);" class="b" id="paypal">Link Direto<i style="margin-left: 10px;"class="fa-brands fa-paypal"></i></i></a>
-                <img src="img/PIX_QR_Code.jpg" alt="QR Code" class="payment_img" style="margin-top: 10px;">
-                <h4 id="i" style="font-size: 18px; margin-top: 5px;">PIX - QR Code</h4>
-                <a onclick="copy_text()" style="margin-top: 5px; background-color: rgb(255 255 255 / 70%); color:rgb(0, 0, 0);"class="b" id="pix_code">Copiar Código do</br>QR Code<i style="margin-left: 10px;" class="fa-regular fa-copy"></i></a>
+                <div class="itens">
+                    <h4 id="i">Pay Me a Coffee</h4>
+                    <p id="simple_info" style="margin-bottom: 0;">Essa calculadora levou um certo tempo para chegar no resultado atual, mas foi desenvolvida com o objetivo de ser totalmente gratuita, e livre da presença de anúncios.<br>
+                        Esse menu foi criado para caso você, usúario, queira realizar uma espécie de doação.<br>
+                        Dessa forma, serei incentivado em não somente realizar as manutenções e desenvolver novas atualizações para a calculadora, quanto em continuar com o meu trabalho e realizar a criação de 
+                        outros projetos.<br>
+                    </p>
+                    <p id="simple_info" style="text-align: center; margin-top: 5px; font-size: 18px; font-weight: 600; text-transform: uppercase; letter-spacing: 3px;">Muito obrigado a todos pelo suporte!</p>
+                    <div id="wrap">
+                        <div class="donation_options">
+                            <img src="img/PayPal_QR_Code.png" alt="QR Code" class="donation_img">
+                            <h4 id="i" style="font-size: 18px;">PayPal - QR Code</h4>
+                            <a href="https://www.paypal.com/donate/?business=8LLVHTSUGG3GC&no_recurring=0&item_name=Pay+Me+a+Coffee&currency_code=BRL" target="_blank" style="margin-top: 5px; background-color: rgb(255 255 255 / 70%); color:rgb(0, 0, 0);" class="b" id="paypal">Link Direto<i style="margin-left: 10px;"class="fa-brands fa-paypal"></i></i></a>
+                        </div>
+                        <div class="donation_options">
+                            <img src="img/PIX_QR_Code.jpg" alt="QR Code" class="donation_img">
+                            <h4 id="i" style="font-size: 18px;">PIX - QR Code</h4>
+                            <a onclick="copy_text()" style="margin-top: 5px; background-color: rgb(255 255 255 / 70%); color:rgb(0, 0, 0);"class="b" id="pix_code">Copiar Código do</br>QR Code<i style="margin-left: 10px;" class="fa-regular fa-copy"></i></a>      
+                        </div>
+                    </div>
+                </div>
             </div>
         <a onclick='show_button(document.getElementById("feedback_menu"))' class="o" id="feedback" style="top: 55px;"><i class="fa-solid fa-comment"></i></a>
             <div class="containner" id="feedback_menu" style="display: none;">
@@ -148,10 +161,19 @@
     </div>
     <div id="calc" class="calc"  oninput="keyboardInput()">
         <input type="text" id="calcs" tabindex="-1" placeholder="0" oninput="check()"/>
+        <a onclick='show_button(document.getElementById("history_containner"))' class="o" id="history"><i class="fa-solid fa-clock-rotate-left"></i></a>
+        <div class="containner" id="history_containner" style="display: none;">
+            <div class="wrapper" id="history_wrapper">
+                <h1 id="title">Histórico</h1>
+                <div class="history_menu" id="history_menu">
+                </div>
+            </div>
+        </div>
         <h2 class="result" id="res">=</h2>
         <div class="container">
             <div class="calc_options">
                 <a class="option" id="C" onclick="C()"><i class="fa-solid fa-c"></i></a>
+                <a class="option" id="CE" onclick="CE()"><i class="fa-solid fa-c"></i><i class="fa-solid fa-e"></i></a>
                 <a class="option" id="⬅" onclick="backspace()" value="⬅"><i class="fa-solid fa-delete-left"></i></a>
                 <a class="option" id="%" onclick="addO(this.id)" value="%"><i class="fa-solid fa-percent"></i></a>
                 <a class="option" id="÷" onclick="addO(this.id)" value="÷"><i class="fa-solid fa-divide"></i></a>

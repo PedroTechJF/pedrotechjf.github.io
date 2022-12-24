@@ -70,6 +70,7 @@ html, body{
     -webkit-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    font-family: Inter;
 }
 .loader {
     width: 48px;
@@ -137,7 +138,6 @@ html, body{
     margin: 100px auto 10px auto;
     background-color: rgb(15, 15, 15);
     color: white;
-    font-family: Inter;
     font-size: 25px;
     border-radius: 20px;
     padding: 50px;
@@ -161,25 +161,28 @@ html, body{
     justify-content: center;
     color: white;
     font-size: 20px;
-    font-family: Inter;
     text-align: center;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 3px;
 }
 a{
     text-decoration: none;
     color:rgb(255, 255, 255);
-    font-family: Inter;
     font-size: 50px;
 }
 h1{
-    color:rgb(255, 255, 255);
-    font-family: Inter;
+    color: rgb(255, 255, 255);
     text-align: center;
     margin: 50px 0px 0px 0px;
-    font-size: 4vh;
+    font-size: 3.6vh;
+    text-align: center;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 3px;
 }
 h2{
     color:rgb(255, 255, 255);
-    font-family: Inter;
     text-align: right;
     display: none;
     margin: 10px 0px -20px 0px;
@@ -191,10 +194,9 @@ h2{
 }
 .containner{
     display: flex;
-    align-content: center;
+    align-content: flex-end;
     justify-content: center;
     align-items: center;
-    flex-wrap: wrap;
     flex-direction: column;
     background: rgb(0, 0, 0, 0.7);
     position: fixed;
@@ -204,6 +206,8 @@ h2{
     min-height: 100%;
     z-index: 1;
     backdrop-filter: blur(5px);
+    overflow: auto;
+    max-height: 85vh;
     -webkit-animation-name: show;
     -webkit-animation-duration: 1s;
     animation-name: show;
@@ -215,7 +219,7 @@ h2{
     align-items: stretch;
     position: fixed;
     top: 85px;
-    width: 220px;
+    width: 235px;
     padding: 50px 60px 0px 20px;
     list-style-type: none;
     transform-origin: 0% 0%;
@@ -226,6 +230,12 @@ h2{
     z-index: 1;
     height: 930px;
     margin: -90px -46px 0px 0px; 
+}
+.contain-hidden, #personalizar{
+    -webkit-animation-name: show;
+    -webkit-animation-duration: 1s;
+    animation-name: show;
+    animation-duration: 1s;
 }
 .numbers{
     display: flex;
@@ -263,6 +273,7 @@ h2{
     margin-left: auto;
     margin-right: auto;
     max-width: 35px;
+    min-height: 35px;
     text-align-last: center;
     font-size: 30px;
     cursor: pointer;
@@ -283,16 +294,16 @@ h2{
 #calcs{
     border-radius: 10px;
     padding: 10px;
+    font-family: Inter;
     font-size: 3.0vh;
     max-width: 325px;
     width: 100%;
-    font-family: Inter;
     text-align: end;
     -webkit-user-select: all;
     -ms-user-select: all;
     user-select: all;
 }
-#res{
+#res, #ress{
     -webkit-user-select: all;
     -ms-user-select: all;
     user-select: all;
@@ -314,7 +325,10 @@ h2{
     position: relative;
     margin: 5px;
     background-color: rgb(15, 15, 15);
-    font-size: 25px;
+    font-size: 20px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 3px;
     border-radius: 20px;
     padding: 20px;
     width: 100%;
@@ -344,8 +358,7 @@ h2{
     margin: 25px 5px;
     background-color: rgb(15, 15, 15);
     color: white;
-    font-family: Inter;
-    font-size: 25px;
+    font-size: 30px;
     border-radius: 20px;
     padding: 20px;
     width: 30px;
@@ -367,7 +380,6 @@ h2{
     margin: 25px 5px;
     background: rgba(0, 0, 0, 0.8);
     color: white;
-    font-family: Inter;
     font-size: 25px;
     border-radius: 20px;
     padding: 10px;
@@ -398,7 +410,6 @@ h2{
     animation-duration: 1s;
 }
 .options_menu{
-    font-family: Inter;
     font-size: 20px;
     color: white;
     padding: 20px;
@@ -430,8 +441,8 @@ h2{
 }
 .submit{
     display: flex;
-    font-family: Inter;
     border-radius: 10px;
+    font-family: Inter;
     background: white;
     margin-top: 10px;
     position: relative;
@@ -451,7 +462,6 @@ h2{
     transform: translate(-50%, 0%);
 }
 #load_info1 #i{
-    font-family: Inter;
     margin-bottom: 10px;
 }
 .wrapper{
@@ -524,7 +534,6 @@ h2{
     padding: 0px;
     text-align: center;
     font-size: 14px;
-    font-family: Inter;
     transition: all 0.5s ease;
 }
 #confirm_message{
@@ -533,16 +542,106 @@ h2{
     padding: 0px;
     text-align: center;
     font-size: 14px;
-    font-family: Inter;
     transition: all 0.5s ease;
 }
-.payment_img{
+.donation_img{
     width: 200px;
     height: 200px;
     -webkit-animation-name: animatebottom;
     -webkit-animation-duration: 1s;
     animation-name: animatebottom;
     animation-duration: 1s;
+}
+#simple_info{
+    color: white;
+    text-align: justify;
+    max-width: 700px;
+    font-size: 15px;
+    position: relative;
+}
+#wrap{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+    position: relative;
+}
+.donation_options {
+    display: flex;
+    margin: 10px 50px;
+    width: 312px;
+    flex-direction: column;
+    align-content: center;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.itens{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+.containner #i{
+    position: relative;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+label.themes {
+    text-align: center;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    justify-content: center;
+    display: flex;
+    font-size: 15px;
+}
+#history{
+    top: 4px;
+    left: 20px;
+    color: black;
+    background-color: transparent;
+}
+.history_menu {
+    height: 565px;
+    background-color: rgb(15, 15, 15);
+    border-radius: 25px;
+    display: flex;
+    flex-direction: column-reverse;
+    overflow-y: scroll;
+}
+.results, .calcs {
+    position: relative;
+    bottom: 25px;
+    margin: 0px 10px;
+    color: #c9c9c9;
+    display: flow-root;
+    letter-spacing: 2px;
+    word-break: break-all;
+    max-width: 318px;
+}
+.c\&r {
+    margin-top: 10px;
+    font-size: 13px;
+}
+.c\&r:first-child {
+    margin-top: 10px;
+    font-size: 20px;
+}
+#C{
+    display: none;
+}
+#CE{
+    display: flex;
+    font-size: 23px;
+    align-items: center;
+}
+i.fa-solid.fa-e {
+    margin-left: 3px;
 }
 @media screen and (max-width: 800px){
     .calc{
@@ -571,5 +670,25 @@ h2{
     .b:hover, .s:hover, .o:hover{
         background-color: rgba(0, 0, 0, 0.8);
         transform: scale(1);
+    }
+    .donation_img{
+        width: 150px;
+        height: 150px;
+    }
+    .containner .b{
+        max-width: 255px;
+    }
+    #simple_info{
+        max-width: 280px;
+    }
+    .itens{
+        top:120px;
+        max-width: 390px;
+    }
+    #history{
+        top: 2px;
+    }
+    .history_menu {
+        height: 460px;
     }
 }
