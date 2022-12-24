@@ -378,6 +378,15 @@ function check(){
     let numbers = calcs.value.split(/[^.0-9]/).filter(Boolean).map(Number);
     let letters = calcs.value.split(/([^0-9.√/%÷*x+-])/);
     let res = document.getElementById("res");
+    let C = document.getElementById("C");
+    let CE = document.getElementById("CE");
+    if (calcs.value.length < 1 && res.innerHTML == "="){
+        C.style.display = "none";
+        CE.style.display = "flex";
+    } else if(C.style.display = "none"){
+        C.style.display = "block";
+        CE.style.display = "none";
+    }
     if (calcs.value.includes(letters) == false){
         calcs.value = calcs.value.slice(0, calcs.value.length - 1);
     } else if((operators[0] != "*-" && operators[0] != "/-" && operators[0] !== "x-" && operators[0] != "÷-") && res.innerHTML != "=" && operators[0].length > 1){
@@ -417,8 +426,6 @@ function equal(){
     let numbers = calcs.value.split(/[^.0-9]/).filter(Boolean).map(Number);
     let result = res.innerHTML.split(/[^.0-9]/).filter(Boolean).map(Number);
     let history_menu = document.getElementById("history_menu");
-    let C = document.getElementById("C");
-    let CE = document.getElementById("CE");
     var x = window.matchMedia("(max-width: 800px)");
 
     if(calcs.value == ""){
@@ -558,8 +565,6 @@ function equal(){
     createElement();
     calcs.value = "";
     calcs.focus();
-    C.style.display = "block";
-    CE.style.display = "none";
     var x = window.matchMedia("(max-width: 800px)")
     if (x.matches) {
         calcs.setAttribute("onclick", "blur();");
