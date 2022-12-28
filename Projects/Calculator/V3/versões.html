@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="pt-br">
+<html>
+<head>
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta http-equiv="X-UA-Compatibility" content="IE=Edge">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" href="favicon.svg">
+    <link rel="stylesheet" href="style.css">
+    <script src="main.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
+    <title>Versões Anteriores</title>
+</head>
+<body onload="loader_versions()" style="margin:0;">
+    <img src="" id="img">
+    <div id="loader">
+        <div id="load_info">
+            <h1 id="title">Calculadora</h1>
+        </div>
+        <span class="loader"></span>
+        <div id="load_info1">
+            <h4 id="i">Desenvolvedor</br>Pedro Tech</h1>
+        </div>
+    </div>
+    <div id="info" class="info">
+        <h1 id="title">Versões</h1>
+    </div>
+    <div id="config_buttons">
+        <a onclick='show_config()' class="o" id="show"><i id="gear" class="fa-solid fa-gear"></i></a>
+            <div class="contain" id="contain">
+                <div id="config" style="display: none;">
+                    <div class="options_menu" id="options_menu">
+                        <h4 id="i" style="margin: 0 0 10px 0;">Temas</h4>
+                        <label class="themes" for="themes">Escolha um tema:</label>
+                        <select class="themes" id="themes" name="themes" onchange="theme()">
+                            <optgroup class="actual_theme" label="Tema Atual">
+                                <option class= "options" value="actual" id="actual_theme"></option>
+                            </optgroup>
+                            <optgroup class="others_themes" label="Outros Temas">
+                                <option class= "options" value="none">Nenhum</option>
+                                <option class= "options" value="bkg1">Tema 1</option>
+                                <option class= "options" value="bkg2">Tema 2</option>
+                                <option class= "options" value="bkg3">Tema 3</option>
+                                <option class= "options" value="bkg4">Tema 4</option>
+                                <option class= "options" value="bkg5">Tema 5</option>
+                                <option class= "options" value="bkg6">Tema 6</option>  
+                                <option class= "options" value="bkg7">Tema 7</option>
+                                <option class= "options" value="bkg8">Tema 8</option>
+                            </optgroup>
+                        </select>
+                    </div>
+                    <div class="contain-hidden" id="contain-hidden" style="display: none;">
+                        <div class="options_menu" id="options_menu">
+                            <h4 id="i" style="margin: 0 0 10px 0;">Papel de Parede</h4>
+                            <label class="themes" for="background_themes">Escolha um papel de parede:</label>
+                            <select class="themes" id="background_themes" name="background_themes" onchange="theme_background()">
+                                <optgroup class="actual_theme" label="Tema Atual">
+                                    <option class= "options" value="actual" id="actual_background"></option>
+                                </optgroup>
+                                <optgroup class="others_themes" label="Outros Temas">
+                                    <option class= "options" value="none">Nenhum</option>
+                                    <option class= "options" value="bkg1">Ondas 1</option>
+                                    <option class= "options" value="bkg2">Ondas 2</option>
+                                    <option class= "options" value="bkg3">Ondas 3</option>
+                                    <option class= "options" value="bkg4">Ondas 4</option>
+                                    <option class= "options" value="bkg5">Ondas 5</option>
+                                    <option class= "options" value="bkg6">Ondas 6</option>  
+                                    <option class= "options" value="bkg7">Ondas 7</option>
+                                    <option class= "options" value="bkg8">Ondas 8</option>
+                                </optgroup>
+                            </select>
+                        </div>
+                        <div class="options_menu" id="options_menu">
+                            <h4 id="i" style="margin: 0 0 10px 0;">Cores Calculadora</h4>
+                            <label class="themes" for="color_themes">Escolha uma cor:</label>
+                            <select class="themes" id="color_themes" name="color_themes" onchange="theme_calc()">
+                                <optgroup class="actual_theme" label="Tema Atual">
+                                    <option class= "options" value="actual" id="actual_color"></option>
+                                </optgroup>
+                                <optgroup class="others_themes" label="Outros Temas">
+                                    <option class= "options" value="color1">Azul-Claro</option>
+                                    <option class= "options" value="color2">Laranja</option>
+                                    <option class= "options" value="color3">Amarelo</option>
+                                    <option class= "options" value="color4">Azul-Escuro</option>
+                                    <option class= "options" value="color5">Verde</option>
+                                    <option class= "options" value="color6">Vermelho</option>
+                                    <option class= "options" value="color7">Roxo</option>
+                                    <option class= "options" value="color8">Branco</option>
+                                </optgroup>
+                            </select>
+                        </div>
+                    </div>
+                    <input type="submit" name="submit" id="personalizar" class="submit" value="Personalizar" onclick="show_personalize()">
+                    <input type="submit" name="submit" id="concluir" class="submit" value="Concluir" onclick="show_config()">
+                </div>
+            </div>
+            <script>
+                let height = window.innerHeight;
+                document.getElementById("contain").style.height = height + "px";
+            </script>
+            <a href="../APK/Mobile_Calculator_V2.apk" class="o" id="android" download><i class="fa-brands fa-android"></i></a>
+    </div>
+    <div id="extra_buttons" style="display: none;">
+        <a onclick='show_button(document.getElementById("coffee_menu"))' class="o" id="coffee"><i class="fa-solid fa-mug-saucer"></i></a>
+            <div class="containner" id="coffee_menu" style="display: none;">
+                <div class="itens">
+                    <h4 id="i">Pay Me a Coffee</h4>
+                    <p id="simple_info" style="margin-bottom: 0;">Essa calculadora levou um certo tempo para chegar no resultado atual, mas foi desenvolvida com o objetivo de ser totalmente gratuita, e livre da presença de anúncios.<br>
+                        Esse menu foi criado para caso você, usúario, queira realizar uma espécie de doação.<br>
+                        Dessa forma, serei incentivado em não somente realizar as manutenções e desenvolver novas atualizações para a calculadora, quanto em continuar com o meu trabalho e realizar a criação de 
+                        outros projetos.<br>
+                    </p>
+                    <p id="simple_info" style="text-align: center; margin-top: 5px; font-size: 18px; font-weight: 600; text-transform: uppercase; letter-spacing: 3px;">Muito obrigado a todos pelo suporte!</p>
+                    <div id="wrap">
+                        <div class="donation_options">
+                            <img src="img/PayPal_QR_Code.png" alt="QR Code" class="donation_img">
+                            <h4 id="i" style="font-size: 18px;">PayPal - QR Code</h4>
+                            <a href="https://www.paypal.com/donate/?business=8LLVHTSUGG3GC&no_recurring=0&item_name=Pay+Me+a+Coffee&currency_code=BRL" target="_blank" style="margin-top: 5px; background-color: rgb(255 255 255 / 70%); color:rgb(0, 0, 0);" class="b" id="paypal">Link Direto<i style="margin-left: 10px;"class="fa-brands fa-paypal"></i></i></a>
+                        </div>
+                        <div class="donation_options">
+                            <img src="img/PIX_QR_Code.jpg" alt="QR Code" class="donation_img">
+                            <h4 id="i" style="font-size: 18px;">PIX - QR Code</h4>
+                            <a onclick="copy_text()" style="margin-top: 5px; background-color: rgb(255 255 255 / 70%); color:rgb(0, 0, 0);"class="b" id="pix_code">Copiar Código do</br>QR Code<i style="margin-left: 10px;" class="fa-regular fa-copy"></i></a>      
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <a onclick='show_button(document.getElementById("feedback_menu"))' class="o" id="feedback" style="top: 55px;"><i class="fa-solid fa-comment"></i></a>
+            <div class="containner" id="feedback_menu" style="display: none;">
+                <div class="wrapper">
+                    <h1 id="title">Feedback</h1>
+                    <h3 style="font-family: Inter;text-align: center;margin-bottom: 30px;color: gray; font-size:smaller; margin-top:-15px; text-shadow: none; box-shadow: none;background-color: rgba(0 0 0 / 0%);">Clicando no botão abaixo e com o formulário preenchido, sua mensagem já estará predefinada para ser enviada</h3>
+                    <div id="error_message">
+            
+                    </div>
+                    <div id="confirm_message">
+            
+                    </div>
+                    <form class="social" id="form_social" onsubmit="return validate();">
+                        <div class="input_field">
+                            <input type="text" placeholder="Nome" id="form_name">
+                        </div>
+                        <div class="input_field">
+                            <input type="text" placeholder="E-mail" id="form_email">
+                        </div>
+                        <div class="input_field">
+                            <textarea placeholder="Comentário" id="form_message"></textarea>
+                        </div>
+                        <div id="form_buttons" style="display: flex;">
+                            <a style="font-size: 20px; background-color: transparent" class="s" href="#" id="e_mail" style="padding: 0px;" onclick="validate()"><i class="fa-regular fa-envelope fa-2x" style="margin: 0 -2px;"></i></img></button></a>    
+                        </div>
+                    </form>
+                </div>
+            </div>
+    </div>
+    <div id="versions">
+        <h4 id="i">Versões Anteriores</h4>
+        <div id="version_buttons">
+            <a href="../V1/index.html" class="s">V1</a>
+            <a href="../V2/index.html" class="s">V2</a>
+        </div>
+    </div>
+    
+    <div id="last_buttons">
+        <a href="index.html" id="b">Calculadora</a>
+        <a href="sobre.html" id="b">Sobre o Desenvolvedor</a>
+        <a href="../../../index.html" id="b">Outros Projetos</a>
+    </div>
+    
+</div>
+</body>
+</html>
