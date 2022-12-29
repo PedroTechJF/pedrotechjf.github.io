@@ -308,14 +308,14 @@ h2{
     max-width: 325px;
     width: 100%;
     text-align: end;
-    -webkit-user-select: all;
-    -ms-user-select: all;
-    user-select: all;
+    -webkit-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
 }
 #res, #ress{
-    -webkit-user-select: all;
-    -ms-user-select: all;
-    user-select: all;
+    -webkit-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
 }
 #calcs:focus{
     border-color: black;

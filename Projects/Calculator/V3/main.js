@@ -352,22 +352,31 @@ function backspace(){
 }
 function keyboardInput(){
     let calcs = document.getElementById("calcs");
-    document.addEventListener('keydown', function(event) {
-        if(event.keyCode == 8) {
-            calcs.focus();
-            calcs.value = calcs.value.slice(0, calcs.value.length);
+    window.addEventListener('keydown', (event) => {
+        if (event.defaultPrevented) {
+            return;
         }
-        if(event.keyCode == 13) {
-            equal();
-        }
-        if(event.keyCode == 27) {
-            if(document.getElementById("CE").style.display == "none"){
-                C();
-            } else if(document.getElementById("C").style.display == "none"){
-                CE();
+        switch (event.key) {
+            case "Backspace":
+                calcs.focus();
+                calcs.value = calcs.value.slice(0, calcs.value.length -1);
+                break;
+            case "Enter":
+                equal();
+                break;
+            case "Esc":
+            case "Escape":
+                if(document.getElementById("CE").style.display == "none"){
+                    C();
+                } else if(document.getElementById("C").style.display == "none"){
+                    CE();
+                }
+                break;
+            default:
+                return;
             }
-        }
-    });
+        event.preventDefault();
+    }, true);
     calcs.focus();
     var x = window.matchMedia("(max-width: 800px)")
     if (x.matches) {
@@ -394,7 +403,7 @@ function check(){
     if (calcs.value.length < 1 && res.innerHTML == "="){
         C.style.display = "none";
         CE.style.display = "flex";
-    } else if(calcs.value.length > 1){
+    } else if(calcs.value.length > 1 || res.innerHTML != "="){
         C.style.display = "block";
         CE.style.display = "none";
     }
@@ -473,6 +482,12 @@ function equal(){
             res.innerHTML = '=' + `${-result[0] * -numbers[0] / 100 - result[0]}`;
         } else if (operators[0] != "-" && operators[1] == "%"){
             res.innerHTML = '=' + `${-result[0] * numbers[0] / 100 - result[0]}`;
+        } else if (operators[0] == "x-"){
+            r = (-result[0]) + "*" + -numbers[0];
+            res.innerHTML = '=' + eval(r);
+        } else if (operators[0] == "÷-"){
+            r = (-result[0]) + "/" + -numbers[0];
+            res.innerHTML = '=' + eval(r);
         } else if (operators[0] == "x"){
             r = (-result[0]) + "*" + numbers[0];
             res.innerHTML = '=' + eval(r);
@@ -495,6 +510,12 @@ function equal(){
             res.innerHTML = '=' + `${Math.sqrt(result[0])}`;
         } else if (operators[1] == "√"){
             res.innerHTML = '=' + `${result[0] + Math.sqrt(numbers[0])}`;
+        } else if (operators[0] == "x-"){
+            r = result[0] + "*" + -numbers[0];
+            res.innerHTML = '=' + eval(r);
+        } else if (operators[0] == "÷-"){
+            r = result[0] + "/" + -numbers[0];
+            res.innerHTML = '=' + eval(r);
         } else if (operators[0] == "x"){
             r = result[0] + "*" + numbers[0];
             res.innerHTML = '=' + eval(r);
@@ -632,7 +653,7 @@ function theme(){
         }
     }
     for(i= 0; i < options.length; i++){
-        if(actual_theme.innerHTML == "Nenhum"){
+        if(actual_theme.innerHTML == "Nenhum"){ 
             options[i].setAttribute("style", "color: var(--theme1);");
             options[10].setAttribute("style", "background-color: var(--theme1);");
             actual_color.innerHTML = "Azul-Claro";
@@ -651,8 +672,8 @@ function theme(){
             window.localStorage.setItem(`color_theme`, `var(--theme${n})`);
         }
     }
-    window.localStorage.setItem(`color_theme`, `var(--theme${n})`);
     notification(document.getElementById("theme"));
+    check();
 }
 function theme_background(){
     let img = document.getElementById("img");
@@ -749,6 +770,7 @@ function theme_calc(){
     actual_theme.innerHTML = "Personalizado";
     themes.value = "actual";
     notification(document.getElementById("theme_color"));
+    check();
 
 }
 function show_config(){
@@ -964,6 +986,10 @@ function notification(notification_id){
     let color_theme = window.localStorage.getItem("color_theme");
     let active = document.getElementById("active");
 
+    if(color_theme == null){
+        color_theme = "var(--theme1)";
+    }
+
     if(active.innerHTML == "1"){
         var observer = new MutationObserver(function(){
             if(active.innerHTML == "0"){
@@ -982,7 +1008,7 @@ function notification(notification_id){
         active.innerHTML = "1";
         progress.style.backgroundColor = color_theme;
         var width = 1;
-        var id = setInterval(frame, 22);
+        var id = setInterval(frame, 17);
         function frame() {
             if (width >= 100) {
             clearInterval(id);
@@ -993,12 +1019,12 @@ function notification(notification_id){
         }
         setTimeout(() => {
             notifications.setAttribute("style", "display:block; -webkit-animation-name: animatebottom-ocult; nimation-name: animatebottom-ocult;");
-        }, 2200);
+        }, 1700);
         setTimeout(() => {
             notifications.style.display = "none";
             notification_id.style.display = "none";
             active.innerHTML = "0";
-        }, 2500);
+        }, 2000);
     }
 
 }
