@@ -44,6 +44,15 @@ border-radius: 10px;
 @keyframes animatebottom { 
     from{ bottom:-100px; opacity:0 } 
     to{ bottom:0px; opacity:1 }
+
+}@-webkit-keyframes animatebottom-ocult {
+    from { bottom: 0px; opacity:1 } 
+    to { bottom: -100px; opacity:0 }
+}
+
+@keyframes animatebottom-ocult { 
+    from{ bottom: 0px; opacity:1 } 
+    to{ bottom: -100px; opacity:0 }
 }
 @-webkit-keyframes show {
     from { opacity:0 } 
@@ -155,7 +164,7 @@ html, body{
     color: white;
     font-size: 25px;
 }
-#i{
+.i{
     margin: 10px;
     display: flex;
     justify-content: center;
@@ -465,7 +474,7 @@ h2{
     left: 48%;
     transform: translate(-50%, 0%);
 }
-#load_info1 #i{
+#load_info1 .i{
     margin-bottom: 10px;
 }
 .wrapper{
@@ -590,7 +599,7 @@ h2{
     align-items: center;
     position: relative;
 }
-.containner #i{
+.containner .i{
     position: relative;
     text-transform: uppercase;
     letter-spacing: 3px;
@@ -647,6 +656,35 @@ label.themes {
 i.fa-solid.fa-e {
     margin-left: 3px;
 }
+#notifications {
+    display: none;
+    bottom: 0px;
+    position: fixed;
+    background: rgba(0, 0, 0, 0.9);
+    padding: 14px;
+    z-index: 1;
+    min-width: -webkit-fill-available;
+    -webkit-animation-name: animatebottom-ocult;
+    -webkit-animation-duration: 1s;
+    animation-name: animatebottom-ocult;
+    animation-duration: 1s;
+}
+#notifications .i{
+    display: none;
+}
+#bar {
+    width: 100%;
+    background-color: #a1a1a1;
+    border-radius: 20px;
+    height: 3px;
+    position: relative;
+}
+#progress {
+    width: 0;
+    border-radius: 20px;
+    height: 3px;
+    position: relative;
+}
 @media screen and (max-width: 800px){
     .calc{
         max-width: 320px;
@@ -662,7 +700,7 @@ i.fa-solid.fa-e {
         max-width: 270px;
         margin-top: 136px;
     }
-    #about #i{
+    #about .i{
         margin: 0;
     }
     #load_info, #load_info1{
@@ -693,7 +731,7 @@ i.fa-solid.fa-e {
         max-width: 280px;
     }
     .itens{
-        top: 175px;
+        top: 150px;
         max-width: 390px;
     }
     #history{

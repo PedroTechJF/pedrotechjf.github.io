@@ -23,7 +23,7 @@
         </div>
         <span class="loader"></span>
         <div id="load_info1">
-            <h4 id="i">Desenvolvedor</br>Pedro Tech</h1>
+            <h4 class="i">Desenvolvedor</br>Pedro Tech</h1>
         </div>
     </div>
     <div id="info" class="info">
@@ -34,7 +34,7 @@
             <div class="contain" id="contain">
                 <div id="config" style="display: none;">
                     <div class="options_menu" id="options_menu">
-                        <h4 id="i" style="margin: 0 0 10px 0;">Temas</h4>
+                        <h4 class="i" style="margin: 0 0 10px 0;">Temas</h4>
                         <label class="themes" for="themes">Escolha um tema:</label>
                         <select class="themes" id="themes" name="themes" onchange="theme()">
                             <optgroup class="actual_theme" label="Tema Atual">
@@ -55,7 +55,7 @@
                     </div>
                     <div class="contain-hidden" id="contain-hidden" style="display: none;">
                         <div class="options_menu" id="options_menu">
-                            <h4 id="i" style="margin: 0 0 10px 0;">Papel de Parede</h4>
+                            <h4 class="i" style="margin: 0 0 10px 0;">Papel de Parede</h4>
                             <label class="themes" for="background_themes">Escolha um papel de parede:</label>
                             <select class="themes" id="background_themes" name="background_themes" onchange="theme_background()">
                                 <optgroup class="actual_theme" label="Tema Atual">
@@ -74,25 +74,6 @@
                                 </optgroup>
                             </select>
                         </div>
-                        <div class="options_menu" id="options_menu">
-                            <h4 id="i" style="margin: 0 0 10px 0;">Cores Calculadora</h4>
-                            <label class="themes" for="color_themes">Escolha uma cor:</label>
-                            <select class="themes" id="color_themes" name="color_themes" onchange="theme_calc()">
-                                <optgroup class="actual_theme" label="Tema Atual">
-                                    <option class= "options" value="actual" id="actual_color"></option>
-                                </optgroup>
-                                <optgroup class="others_themes" label="Outros Temas">
-                                    <option class= "options" value="color1">Azul-Claro</option>
-                                    <option class= "options" value="color2">Laranja</option>
-                                    <option class= "options" value="color3">Amarelo</option>
-                                    <option class= "options" value="color4">Azul-Escuro</option>
-                                    <option class= "options" value="color5">Verde</option>
-                                    <option class= "options" value="color6">Vermelho</option>
-                                    <option class= "options" value="color7">Roxo</option>
-                                    <option class= "options" value="color8">Branco</option>
-                                </optgroup>
-                            </select>
-                        </div>
                     </div>
                     <input type="submit" name="submit" id="personalizar" class="submit" value="Personalizar" onclick="show_personalize()">
                     <input type="submit" name="submit" id="concluir" class="submit" value="Concluir" onclick="show_config()">
@@ -108,7 +89,7 @@
         <a onclick='show_button(document.getElementById("coffee_menu"))' class="o" id="coffee"><i class="fa-solid fa-mug-saucer"></i></a>
             <div class="containner" id="coffee_menu" style="display: none;">
                 <div class="itens">
-                    <h4 id="i">Pay Me a Coffee</h4>
+                    <h4 class="i">Pay Me a Coffee</h4>
                     <p id="simple_info" style="margin-bottom: 0;">Essa calculadora levou um certo tempo para chegar no resultado atual, mas foi desenvolvida com o objetivo de ser totalmente gratuita, e livre da presença de anúncios.<br>
                         Esse menu foi criado para caso você, usúario, queira realizar uma espécie de doação.<br>
                         Dessa forma, serei incentivado em não somente realizar as manutenções e desenvolver novas atualizações para a calculadora, quanto em continuar com o meu trabalho e realizar a criação de 
@@ -118,12 +99,12 @@
                     <div id="wrap">
                         <div class="donation_options">
                             <img src="img/PayPal_QR_Code.png" alt="QR Code" class="donation_img">
-                            <h4 id="i" style="font-size: 18px;">PayPal - QR Code</h4>
+                            <h4 class="i" style="font-size: 18px;">PayPal - QR Code</h4>
                             <a href="https://www.paypal.com/donate/?business=8LLVHTSUGG3GC&no_recurring=0&item_name=Pay+Me+a+Coffee&currency_code=BRL" target="_blank" style="margin-top: 5px; background-color: rgb(255 255 255 / 70%); color:rgb(0, 0, 0);" class="b" id="paypal">Link Direto<i style="margin-left: 10px;"class="fa-brands fa-paypal"></i></i></a>
                         </div>
                         <div class="donation_options">
                             <img src="img/PIX_QR_Code.jpg" alt="QR Code" class="donation_img">
-                            <h4 id="i" style="font-size: 18px;">PIX - QR Code</h4>
+                            <h4 class="i" style="font-size: 18px;">PIX - QR Code</h4>
                             <a onclick="copy_text()" style="margin-top: 5px; background-color: rgb(255 255 255 / 70%); color:rgb(0, 0, 0);"class="b" id="pix_code">Copiar Código do</br>QR Code<i style="margin-left: 10px;" class="fa-regular fa-copy"></i></a>      
                         </div>
                     </div>
@@ -160,7 +141,7 @@
     <div id="about" style="flex-direction: column;">
         <img src="img/profile.jpg" alt="Pedro Lucas" width="80" height="80"style="border-radius: 50%;">
         <h2 id="name">Pedro Lucas</h2>
-        <h4 id="i" style="font-weight: initial; text-transform: initial; letter-spacing: 0px; display: block; text-align: justify;">Olá, eu me chamo Pedro Lucas, tenho 18 anos e resido em Juiz de Fora - MG.<br><br>
+        <h4 class="i" style="font-weight: initial; text-transform: initial; letter-spacing: 0px; display: block; text-align: justify;">Olá, eu me chamo Pedro Lucas, tenho 18 anos e resido em Juiz de Fora - MG.<br><br>
             Nos últimos meses venho realizando alguns projetos de Desenvolvimento Web, usando HTML, JavaScript e CSS. <br>
             Os projetos atuais são uma
             <a style="color:#0095ff; font-size: 20px;" href="https://pedrotechjf.github.io/Projects/Calculator/V3/index.html"> Calculadora </a>
@@ -181,8 +162,18 @@
     <div id="last_buttons">
         <a href="index.html" class="b">Calculadora</a>
         <a href="versões.html" class="b">Versões Anteriores do Projeto</a>
-        <a href="../../../index.html" class="b">Outros Projetos</a>
+        <a href="../../" class="b">Outros Projetos</a>
     </div>
+    <div id="notifications">
+        <div id="bar">
+            <div id="progress"></div>
+        </div>
+        <h4 class="i" id="clear_history">O histórico foi apagado!</h4>
+        <h4 class="i" id="clear_recent">O último resultado foi apagado!</h4>
+        <h4 class="i" id="theme">O tema foi alterado!</h4>
+        <h4 class="i" id="theme_bkg">O papel de parede foi alterado!</h4>
+        <h4 class="i" id="theme_color">A cor da calculadora foi alterada!</h4>
+    </div> 
     
 </div>
 </body>

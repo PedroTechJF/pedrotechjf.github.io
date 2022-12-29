@@ -25,7 +25,7 @@
         </div>
         <span class="loader"></span>
         <div id="load_info1">
-            <h4 id="i">Desenvolvedor</br>Pedro Tech</h1>
+            <h4 class="i">Desenvolvedor</br>Pedro Tech</h1>
         </div>
     </div>
     <div id="info" class="info">
@@ -36,7 +36,7 @@
             <div class="contain" id="contain">
                 <div id="config" style="display: none;">
                     <div class="options_menu" id="options_menu">
-                        <h4 id="i" style="margin: 0 0 10px 0;">Temas</h4>
+                        <h4 class="i" style="margin: 0 0 10px 0;">Temas</h4>
                         <label class="themes" for="themes">Escolha um tema:</label>
                         <select class="themes" id="themes" name="themes" onchange="theme()">
                             <optgroup class="actual_theme" label="Tema Atual">
@@ -57,7 +57,7 @@
                     </div>
                     <div class="contain-hidden" id="contain-hidden" style="display: none;">
                         <div class="options_menu" id="options_menu">
-                            <h4 id="i" style="margin: 0 0 10px 0;">Papel de Parede</h4>
+                            <h4 class="i" style="margin: 0 0 10px 0;">Papel de Parede</h4>
                             <label class="themes" for="background_themes">Escolha um papel de parede:</label>
                             <select class="themes" id="background_themes" name="background_themes" onchange="theme_background()">
                                 <optgroup class="actual_theme" label="Tema Atual">
@@ -77,7 +77,7 @@
                             </select>
                         </div>
                         <div class="options_menu" id="options_menu">
-                            <h4 id="i" style="margin: 0 0 10px 0;">Cores Calculadora</h4>
+                            <h4 class="i" style="margin: 0 0 10px 0;">Cores Calculadora</h4>
                             <label class="themes" for="color_themes">Escolha uma cor:</label>
                             <select class="themes" id="color_themes" name="color_themes" onchange="theme_calc()">
                                 <optgroup class="actual_theme" label="Tema Atual">
@@ -110,7 +110,7 @@
         <a onclick='show_button(document.getElementById("coffee_menu"))' class="o" id="coffee"><i class="fa-solid fa-mug-saucer"></i></a>
             <div class="containner" id="coffee_menu" style="display: none;">
                 <div class="itens">
-                    <h4 id="i">Pay Me a Coffee</h4>
+                    <h4 class="i">Pay Me a Coffee</h4>
                     <p id="simple_info" style="margin-bottom: 0;">Essa calculadora levou um certo tempo para chegar no resultado atual, mas foi desenvolvida com o objetivo de ser totalmente gratuita, e livre da presença de anúncios.<br>
                         Esse menu foi criado para caso você, usúario, queira realizar uma espécie de doação.<br>
                         Dessa forma, serei incentivado em não somente realizar as manutenções e desenvolver novas atualizações para a calculadora, quanto em continuar com o meu trabalho e realizar a criação de 
@@ -120,12 +120,12 @@
                     <div id="wrap">
                         <div class="donation_options">
                             <a href="https://www.paypal.com/donate/?business=8LLVHTSUGG3GC&no_recurring=0&item_name=Pay+Me+a+Coffee&currency_code=BRL" target="_blank"><img src="img/PayPal_QR_Code.png" alt="QR Code" class="donation_img"></a>
-                            <h4 id="i" style="font-size: 18px;">PayPal - QR Code</h4>
+                            <h4 class="i" style="font-size: 18px;">PayPal - QR Code</h4>
                             <a href="https://www.paypal.com/donate/?business=8LLVHTSUGG3GC&no_recurring=0&item_name=Pay+Me+a+Coffee&currency_code=BRL" target="_blank" style="margin-top: 5px; background-color: rgb(255 255 255 / 70%); color:rgb(0, 0, 0);" class="b" id="paypal">Link Direto<i style="margin-left: 10px;"class="fa-brands fa-paypal"></i></i></a>
                         </div>
                         <div class="donation_options">
                             <a href="https://nubank.com.br/pagar/12modw/XwcmUd52RF" target="_blank"><img src="img/PIX_QR_Code.jpg" alt="QR Code" class="donation_img"></a>
-                            <h4 id="i" style="font-size: 18px;">PIX - QR Code</h4>
+                            <h4 class="i" style="font-size: 18px;">PIX - QR Code</h4>
                             <a onclick="copy_text()" style="margin-top: 5px; background-color: rgb(255 255 255 / 70%); color:rgb(0, 0, 0);"class="b" id="pix_code">Copiar Código do</br>QR Code<i style="margin-left: 10px;" class="fa-regular fa-copy"></i></a>      
                         </div>
                     </div>
@@ -142,7 +142,7 @@
                     <div id="confirm_message">
             
                     </div>
-                    <form class="social" id="form_social" onsubmit="return validate();">
+                    <form class="social" id="form_social" oninput="validate()" onsubmit="return send();">
                         <div class="input_field">
                             <input type="text" placeholder="Nome" id="form_name">
                         </div>
@@ -153,13 +153,13 @@
                             <textarea placeholder="Comentário" id="form_message"></textarea>
                         </div>
                         <div id="form_buttons" style="display: flex;">
-                            <a style="font-size: 20px; background-color: transparent" class="s" href="#" id="e_mail" style="padding: 0px;" onclick="validate()"><i class="fa-regular fa-envelope fa-2x" style="margin: 0 -2px;"></i></img></button></a>    
+                            <a style="font-size: 20px; background-color: transparent" class="s" href="#" id="e_mail" style="padding: 0px;" onclick="send()"><i class="fa-regular fa-envelope fa-2x" style="margin: 0 -2px;"></i></img></button></a>    
                         </div>
                     </form>
                 </div>
             </div>
     </div>
-    <div id="calc" class="calc">
+    <div id="calc" class="calc" onkeydown="keyboardInput();">
         <input type="text" id="calcs" tabindex="-1" placeholder="0" oninput="check()"/>
         <a onclick='show_button(document.getElementById("history_containner"))' class="o" id="history"><i class="fa-solid fa-clock-rotate-left"></i></a>
         <div class="containner" id="history_containner" style="display: none;">
@@ -194,12 +194,25 @@
                 <a class="option" id="." onclick="addO(this.id)" value=".">.</a>
                 <a class="option" id="equal" onclick="equal()"><i class="fa-solid fa-equals"></i></a>
             </div>
-        </div>     
+        </div>    
     </div>
     <div id="last_buttons" style="display: none;">
         <a href="sobre.html" class="b">Sobre o Desenvolvedor</a>
         <a href="versões.html" class="b">Versões Anteriores do Projeto</a>
-        <a href="../../../index.html" class="b">Outros Projetos</a>
+        <a href="../../" class="b">Outros Projetos</a>
     </div>
+    <div id="notifications">
+        <h4 id="active" style="display: none;">0</h4>
+        <div id="bar">
+            <div id="progress"></div>
+        </div>
+        <h4 class="i" id="clear_history">O histórico foi apagado!</h4>
+        <h4 class="i" id="clear_recent">O último resultado foi apagado!</h4>
+        <h4 class="i" id="theme">O tema foi alterado!</h4>
+        <h4 class="i" id="theme_bkg">O papel de parede foi alterado!</h4>
+        <h4 class="i" id="theme_color">A cor da calculadora foi alterada!</h4>
+        <h4 class="i" id="send_feedback">O seu feedback foi enviado com sucesso!</h4>
+        <h4 class="i" id="fail_feedback">Você cancelou o envio do seu feedback!</h4>
+    </div> 
 </body>
 </html>

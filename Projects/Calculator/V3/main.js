@@ -95,7 +95,6 @@ function loader_calc(){
         
     }
     document.getElementById('calcs').focus();
-    keyboardInput();
     var x = window.matchMedia("(max-width: 800px)");
     if (x.matches) {
         document.getElementById('calcs').setAttribute("onclick", "blur();");
@@ -290,6 +289,7 @@ function C(){
     let calcs = document.getElementById("calcs");
     let C = document.getElementById("C");
     let CE = document.getElementById("CE");
+    let color_theme = window.localStorage.getItem("color_theme");
 
     calcs.value = "";
     calcs.placeholder = "0";
@@ -299,8 +299,8 @@ function C(){
     CE.style.display = "flex";
 
     calcs.focus();
+    notification(document.getElementById("clear_recent"));
     var x = window.matchMedia("(max-width: 800px)");
-    let color_theme = window.localStorage.getItem("color_theme");
     if (x.matches) {
         calcs.setAttribute("onclick", "blur();");
         calcs.setAttribute("readonly", "");
@@ -314,6 +314,7 @@ function CE(){
     let calcs = document.getElementById("calcs");
     let CE = document.getElementById("CE");
     let history_menu = document.getElementById("history_menu");
+    let color_theme = window.localStorage.getItem("color_theme");
 
     history_menu.innerHTML = "";
     window.localStorage.removeItem("results");
@@ -321,8 +322,8 @@ function CE(){
     window.localStorage.removeItem("calcs");
 
     calcs.focus();
+    notification(document.getElementById("clear_history"));
     var x = window.matchMedia("(max-width: 800px)");
-    let color_theme = window.localStorage.getItem("color_theme");
     if (x.matches) {
         calcs.setAttribute("onclick", "blur();");
         calcs.setAttribute("readonly", "");
@@ -413,6 +414,9 @@ function check(){
     } else if(res.innerHTML == "=" && operators[0].length > 0 && operators[0] == "√"){
         equal();
         calcs.value = "";
+    } else if(res.innerHTML != "=" && operators[0].length > 0 && operators[0] == "√"){
+        equal();
+        calcs.value = "";
     } else if(res.innerHTML == "=" && operators[0].length > 0 && numbers.length > 0){
         equal();
         calcs.value = operators[0];
@@ -441,22 +445,16 @@ function equal(){
         return
     } else if( (calcs.value.includes(operators) && numbers.length == 0) && (calcs.value.includes("√") == false && res.innerHTML == "=")){
         alert("Você precisa digitar alguns números...");
-        calcs.focus();
-        if (x.matches) {
-            calcs.setAttribute("onclick", "blur();");
-            calcs.setAttribute("readonly", "");
-        }
         return
     }
     if(calcs.value.includes(operators[0]) == false && res.innerHTML == "="){
         res.innerHTML = "=" + numbers[0];
         res.setAttribute("style", "display: block;");
         calcs.value = "";
-        calcs.focus();
-        if (x.matches) {
-            calcs.setAttribute("onclick", "blur();");
-            calcs.setAttribute("readonly", "");
-        }
+    } else if(calcs.value.includes(operators[0]) == false && res.innerHTML != "="){
+        res.innerHTML = res.innerHTML;
+        res.setAttribute("style", "display: block;");
+        calcs.value = "";
     } else if(res.innerHTML == "=" && operators[0] == "-" && operators[1] == undefined){
         r = numbers[0];
         res.innerHTML = '=' + r;
@@ -515,7 +513,6 @@ function equal(){
         var n;
         if (res.innerHTML.includes(".")){
             n = res.innerHTML.split(".");
-            console.log(n);
             if (n[1].length > 8){
                 n[1] = n[1].slice(0, 8);
             }
@@ -540,9 +537,15 @@ function equal(){
             if(history_menu.childElementCount == 0){
                 if(operators[0] == "-"){
                     h2_1.innerHTML = operators[0] + numbers[0];
+                } else if (operators[0] == "√") {
+                    h2_1.innerHTML = operators[0] + numbers[0];
                 } else {
                     h2_1.innerHTML = numbers[0];
                 }
+            } else if(operators[0] == undefined && res.innerHTML != "="){
+                h2_1.innerHTML = h2_1.lastElementChild.innerHTML;
+            } else if (operators[0] != undefined && operators[0] == "√" && res.innerHTML != "=") {
+                h2_1.innerHTML = operators[0] + result[0];
             } else if (operators[1] != undefined && operators[1] == "√" || operators[1] == "%") {
                 h2_1.innerHTML = result[0] + operators[0] + numbers[0] + operators[1];
             } else if(result[0] != undefined){
@@ -643,6 +646,8 @@ function theme(){
             window.localStorage.setItem(`color_theme`, `var(--theme${n})`);
         }
     }
+    window.localStorage.setItem(`color_theme`, `var(--theme${n})`);
+    notification(document.getElementById("theme"));
 }
 function theme_background(){
     let img = document.getElementById("img");
@@ -682,6 +687,7 @@ function theme_background(){
             window.localStorage.setItem('theme', `./backgrounds/${device}/background-${i}.png`);
         }
     }
+    notification(document.getElementById("theme_bkg"));
 }
 function theme_calc(){
     let options = document.getElementsByClassName("option");
@@ -737,6 +743,7 @@ function theme_calc(){
     color_themes.value = "actual";
     actual_theme.innerHTML = "Personalizado";
     themes.value = "actual";
+    notification(document.getElementById("theme_color"));
 
 }
 function show_config(){
@@ -817,7 +824,8 @@ function show_button(button_id){
                 document.getElementById("form_name").setAttribute("style", "border: 1px solid #e0e0e0");
                 document.getElementById("form_email").setAttribute("style", "border: 1px solid #e0e0e0");
                 document.getElementById("form_message").setAttribute("style", "border: 1px solid #e0e0e0");
-                document.getElementById("error_message").innerHTML = ""
+                document.getElementById("error_message").innerHTML = "";
+                document.getElementById("form_social").reset();
             },900);
         } else if(button == coffee_menu){
             document.getElementById("coffee").style.zIndex = 0;
@@ -851,61 +859,141 @@ function validate(){
     var message = document.getElementById("form_message");
     var error_message = document.getElementById("error_message");
     var confirm_message = document.getElementById("confirm_message");
+
+    var e;
+    var e2;
+    if(email.value.length > 0){
+        e = email.value.split("@");
+        e2 = e[1].split(".");
+    };
       
     var text;
     if(name.value.length < 1){
       text = "Por favor coloque o seu nome";
       error_message.innerHTML = text;
+      confirm_message.innerHTML = "";
       name.setAttribute("style", "border: 1px solid red");
       email.setAttribute("style", "border: 1px solid #e0e0e0");
       message.setAttribute("style", "border: 1px solid #e0e0e0");
-      return false;
-    }
-    if(email.value.indexOf("@") == -1 || email.value.length < 6){
+    } else if(email.value.indexOf("@") == -1 || email.value.length < 1 || e[1].length < 1 || e[1].includes(".") == false || e2[1].length < 1){
       text = "Por favor coloque um e-mail válido";
       error_message.innerHTML = text;
+      confirm_message.innerHTML = "";
       name.setAttribute("style", "border: 1px solid #e0e0e0");
       email.setAttribute("style", "border: 1px solid red");
       message.setAttribute("style", "border: 1px solid #e0e0e0");
-      return false;
-    }
-    if(message.value.length < 1){
+    } else if(message.value.length < 1){
       text = "Por favor coloque o seu comentário";
       error_message.innerHTML = text;
+      confirm_message.innerHTML = "";
       name.setAttribute("style", "border: 1px solid #e0e0e0");
       email.setAttribute("style", "border: 1px solid #e0e0e0");
       message.setAttribute("style", "border: 1px solid red");
       setTimeout(function(){
         message.setAttribute("style", "border: 1px solid #e0e0e0");
       },10000);
-      return false;
-    }
-    var f=confirm('Confirme sua mensagem e pressione "Ok"\nCaso queira alterar algo, pressione "Cancelar"');
-    if (f==true){
-        setTimeout(function(){
-          name.setAttribute("style", "border: 1px solid #e0e0e0");
-          email.setAttribute("style", "border: 1px solid #e0e0e0");
-          message.setAttribute("style", "border: 1px solid #e0e0e0");
-        },1000);
-        document.getElementById("e_mail").setAttribute("href", `mailto:pedrotech.jf@gmail.com?subject=Feedback - Calculadora&body=Olá, me chamo ${name.value.replace(/^\s+|\s+$/g,'')} e estou entrando em contato para lhe dar um feedback sobre sua calculadora.%0A%0A${message.value.replace(/^\s+|\s+$/g,'')}%0A%0ASegue meus dados abaixo:%0ANome: ${name.value.replace(/^\s+|\s+$/g,'')}%0AE-mail: ${email.value.replace(/^\s+|\s+$/g,'')}`);
-        var e_mail = document.getElementById("e_mail").href;
-        e_mail;
+    } else {
+        text = "Sua mensagem está pronta para ser enviada!";
         error_message.innerHTML = "";
-        confirm_message.innerHTML = "O seu feedback foi enviado com sucesso!";
-        setTimeout(function(){
-            show_button(feedback_menu);
-        },3000)
-        document.getElementById("form_social").reset();
-        return true;
-      }
-    else
-      {
-        error_message.innerHTML = "Você cancelou o envio do seu feedback!";
-        setTimeout(function(){
-          name.setAttribute("style", "border: 1px solid #e0e0e0");
-          email.setAttribute("style", "border: 1px solid #e0e0e0");
-          message.setAttribute("style", "border: 1px solid #e0e0e0");
-        },1000);
+        confirm_message.innerHTML = text;
+        name.setAttribute("style", "border: 1px solid #e0e0e0");
+        email.setAttribute("style", "border: 1px solid #e0e0e0");
+        message.setAttribute("style", "border: 1px solid #e0e0e0");
+    }
+}
+function send(){
+    var name = document.getElementById("form_name");
+    var email = document.getElementById("form_email");
+    var message = document.getElementById("form_message");
+    var error_message = document.getElementById("error_message");
+    var confirm_message = document.getElementById("confirm_message");
+
+    if(confirm_message.innerHTML != "Sua mensagem está pronta para ser enviada!"){
+        alert("Você precisar preencher todos os campos do formulário!");
         return false;
-      }
+    } else {
+        var f=confirm('Confirme sua mensagem e pressione "Ok"\nCaso queira alterar algo, pressione "Cancelar"');
+        if (f==true){
+            setTimeout(function(){
+              name.setAttribute("style", "border: 1px solid #e0e0e0");
+              email.setAttribute("style", "border: 1px solid #e0e0e0");
+              message.setAttribute("style", "border: 1px solid #e0e0e0");
+            },1000);
+            document.getElementById("e_mail").setAttribute("href", `mailto:pedrotech.jf@gmail.com?subject=Feedback - Calculadora&body=Olá, me chamo ${name.value.replace(/^\s+|\s+$/g,'')} e estou entrando em contato para lhe dar um feedback sobre sua calculadora.%0A%0A${message.value.replace(/^\s+|\s+$/g,'')}%0A%0ASegue meus dados abaixo:%0ANome: ${name.value.replace(/^\s+|\s+$/g,'')}%0AE-mail: ${email.value.replace(/^\s+|\s+$/g,'')}`);
+            var e_mail = document.getElementById("e_mail").href;
+            e_mail;
+            error_message.innerHTML = "";
+            confirm_message.innerHTML = "O seu feedback foi enviado com sucesso!";
+            notification(document.getElementById("send_feedback"));
+            document.getElementById("progress").style.backgroundColor = "green";
+            setTimeout(function(){
+                show_button(feedback_menu);
+                document.getElementById("form_social").reset();
+                confirm_message.innerHTML = "";
+            },3000)
+            document.getElementById("form_social").reset();
+            return true;
+          }
+        else
+          {
+            error_message.innerHTML = "Você cancelou o envio do seu feedback!";
+            confirm_message.innerHTML = "";
+            setTimeout(() => {
+                error_message.innerHTML = "";
+                confirm_message.innerHTML = "Sua mensagem está pronta para ser enviada!"
+            }, 2500);
+            notification(document.getElementById("fail_feedback"));
+            document.getElementById("progress").style.backgroundColor = "red";
+            setTimeout(function(){
+              name.setAttribute("style", "border: 1px solid #e0e0e0");
+              email.setAttribute("style", "border: 1px solid #e0e0e0");
+              message.setAttribute("style", "border: 1px solid #e0e0e0");
+            },1000);
+            return false;
+          }
+    }
+}
+function notification(notification_id){
+    let notifications = document.getElementById("notifications");
+    let progress = document.getElementById("progress");
+    let color_theme = window.localStorage.getItem("color_theme");
+    let active = document.getElementById("active");
+
+    if(active.innerHTML == "1"){
+        var observer = new MutationObserver(function(){
+            if(active.innerHTML == "0"){
+                send_n();
+                observer.disconnect();
+            }
+        });
+        observer.observe(active, { attributes: true, childList: true });
+    } else {
+        send_n();
+    }
+    function send_n(){
+        notifications.setAttribute("style", "-webkit-animation-name: animatebottom; nimation-name: animatebottom;");
+        notifications.style.display = "block";
+        notification_id.style.display = "block";
+        active.innerHTML = "1";
+        progress.style.backgroundColor = color_theme;
+        var width = 1;
+        var id = setInterval(frame, 22);
+        function frame() {
+            if (width >= 100) {
+            clearInterval(id);
+            } else {
+            width++; 
+            progress.style.width = width + '%'; 
+            }
+        }
+        setTimeout(() => {
+            notifications.setAttribute("style", "display:block; -webkit-animation-name: animatebottom-ocult; nimation-name: animatebottom-ocult;");
+        }, 2200);
+        setTimeout(() => {
+            notifications.style.display = "none";
+            notification_id.style.display = "none";
+            active.innerHTML = "0";
+        }, 2500);
+    }
+
 }
