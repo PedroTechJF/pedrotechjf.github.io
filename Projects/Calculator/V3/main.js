@@ -316,22 +316,27 @@ function CE(){
     let history_menu = document.getElementById("history_menu");
     let color_theme = window.localStorage.getItem("color_theme");
 
-    history_menu.innerHTML = "";
-    window.localStorage.removeItem("results");
-    window.localStorage.removeItem("res");
-    window.localStorage.removeItem("calcs");
-
-    calcs.focus();
-    notification(document.getElementById("clear_history"));
-    var x = window.matchMedia("(max-width: 800px)");
-    if (x.matches) {
-        calcs.setAttribute("onclick", "blur();");
-        calcs.setAttribute("readonly", "");
-        CE.setAttribute("style", `background-color: rgba(209, 209, 209, 0.15); transform: scale(1.05); color: ${color_theme};`);
-        setTimeout(function(){
-            CE.setAttribute("style", `background-color: rgba(0, 0, 0, 0); transform: scale(1.0); color: ${color_theme};`);
-        },250);
+    if (history_menu.innerHTML == ""){
+        notification(document.getElementById("clear_history_e"));
+    } else {
+        history_menu.innerHTML = "";
+        window.localStorage.removeItem("results");
+        window.localStorage.removeItem("res");
+        window.localStorage.removeItem("calcs");
+    
+        calcs.focus();
+        notification(document.getElementById("clear_history"));
+        var x = window.matchMedia("(max-width: 800px)");
+        if (x.matches) {
+            calcs.setAttribute("onclick", "blur();");
+            calcs.setAttribute("readonly", "");
+            CE.setAttribute("style", `background-color: rgba(209, 209, 209, 0.15); transform: scale(1.05); color: ${color_theme};`);
+            setTimeout(function(){
+                CE.setAttribute("style", `background-color: rgba(0, 0, 0, 0); transform: scale(1.0); color: ${color_theme};`);
+            },250);
+        }
     }
+
 }
 function backspace(){
     let calcs = document.getElementById("calcs");
