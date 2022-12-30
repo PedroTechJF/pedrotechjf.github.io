@@ -30,60 +30,7 @@
         <h1 id="title">Sobre</h1>
     </div>
     <div id="config_buttons">
-        <a onclick='show_config()' class="o" id="show"><i id="gear" class="fa-solid fa-gear"></i></a>
-            <div class="contain" id="contain">
-                <div id="config" style="display: none;">
-                    <div class="options_menu" id="options_menu">
-                        <h4 class="i" style="margin: 0 0 10px 0;">Temas</h4>
-                        <label class="themes" for="themes">Escolha um tema:</label>
-                        <select class="themes" id="themes" name="themes" onchange="theme()">
-                            <optgroup class="actual_theme" label="Tema Atual">
-                                <option class= "options" value="actual" id="actual_theme"></option>
-                            </optgroup>
-                            <optgroup class="others_themes" label="Outros Temas">
-                                <option class= "options" value="none">Nenhum</option>
-                                <option class= "options" value="bkg1">Tema 1</option>
-                                <option class= "options" value="bkg2">Tema 2</option>
-                                <option class= "options" value="bkg3">Tema 3</option>
-                                <option class= "options" value="bkg4">Tema 4</option>
-                                <option class= "options" value="bkg5">Tema 5</option>
-                                <option class= "options" value="bkg6">Tema 6</option>  
-                                <option class= "options" value="bkg7">Tema 7</option>
-                                <option class= "options" value="bkg8">Tema 8</option>
-                            </optgroup>
-                        </select>
-                    </div>
-                    <div class="contain-hidden" id="contain-hidden" style="display: none;">
-                        <div class="options_menu" id="options_menu">
-                            <h4 class="i" style="margin: 0 0 10px 0;">Papel de Parede</h4>
-                            <label class="themes" for="background_themes">Escolha um papel de parede:</label>
-                            <select class="themes" id="background_themes" name="background_themes" onchange="theme_background()">
-                                <optgroup class="actual_theme" label="Tema Atual">
-                                    <option class= "options" value="actual" id="actual_background"></option>
-                                </optgroup>
-                                <optgroup class="others_themes" label="Outros Temas">
-                                    <option class= "options" value="none">Nenhum</option>
-                                    <option class= "options" value="bkg1">Ondas 1</option>
-                                    <option class= "options" value="bkg2">Ondas 2</option>
-                                    <option class= "options" value="bkg3">Ondas 3</option>
-                                    <option class= "options" value="bkg4">Ondas 4</option>
-                                    <option class= "options" value="bkg5">Ondas 5</option>
-                                    <option class= "options" value="bkg6">Ondas 6</option>  
-                                    <option class= "options" value="bkg7">Ondas 7</option>
-                                    <option class= "options" value="bkg8">Ondas 8</option>
-                                </optgroup>
-                            </select>
-                        </div>
-                    </div>
-                    <input type="submit" name="submit" id="personalizar" class="submit" value="Personalizar" onclick="show_personalize()">
-                    <input type="submit" name="submit" id="concluir" class="submit" value="Concluir" onclick="show_config()">
-                </div>
-            </div>
-            <script>
-                let height = window.innerHeight;
-                document.getElementById("contain").style.height = height + "px";
-            </script>
-            <a href="../APK/Mobile_Calculator_V2.apk" class="o" id="android" download><i class="fa-brands fa-android"></i></a>
+        <a href="apk/Calculadora_V3.apk" class="o" id="android" download><i class="fa-brands fa-android"></i></a>
     </div>
     <div id="extra_buttons" style="display: none;">
         <a onclick='show_button(document.getElementById("coffee_menu"))' class="o" id="coffee"><i class="fa-solid fa-mug-saucer"></i></a>

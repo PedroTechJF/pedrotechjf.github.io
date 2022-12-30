@@ -92,7 +92,6 @@ function loader_calc(){
     }
     if(navigator.userAgent.indexOf("Android") != -1){
         document.getElementById("android").setAttribute("style", "display: flex; top: 55px; position: absolute; z-index: 0");
-        
     }
     document.getElementById('calcs').focus();
     var x = window.matchMedia("(max-width: 800px)");
@@ -109,7 +108,6 @@ function loader_about(){
     document.getElementById("loader").style.display = "none";
     document.getElementById("about").style.display = "flex";
     document.getElementById("info").style.display = "block";
-    document.getElementById("config_buttons").style.display = "flex";
     document.getElementById("extra_buttons").setAttribute("style","display:flex; flex-direction: column-reverse;");
     document.getElementById("last_buttons").style.display = "flex";
     document.getElementById("img").style.display = "block";
@@ -176,7 +174,6 @@ function loader_about(){
     }
     if(navigator.userAgent.indexOf("Android") != -1){
         document.getElementById("android").setAttribute("style", "display: flex; top: 55px; position: absolute; z-index: 0");
-        
     }
     }
 }
@@ -187,7 +184,6 @@ function loader_versions(){
     document.getElementById("loader").style.display = "none";
     document.getElementById("versions").style.display = "flow-root";
     document.getElementById("info").style.display = "block";
-    document.getElementById("config_buttons").style.display = "flex";
     document.getElementById("extra_buttons").setAttribute("style","display:flex; flex-direction: column-reverse;");
     document.getElementById("last_buttons").style.display = "flex";
     document.getElementById("version_buttons").style.display = "flex";
@@ -255,7 +251,6 @@ function loader_versions(){
     }
     if(navigator.userAgent.indexOf("Android") != -1){
         document.getElementById("android").setAttribute("style", "display: flex; top: 55px; position: absolute; z-index: 0");
-        
     }
     }
 }
