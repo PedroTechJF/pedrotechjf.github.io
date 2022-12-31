@@ -52,10 +52,10 @@ function loader_calc(){
         background_themes.value = "actual";
     }
     for(i= 0; i < options.length; i++){
-        if(color_theme != null){
+        if(color_theme != null && color_theme != "var(--theme8)"){
             options[i].setAttribute("style", `color: ${color_theme};`);
             options[10].setAttribute("style", `background-color: ${color_theme};`);
-        } else if(color_theme == "var(--theme8s)"){
+        } else if(color_theme == "var(--theme8)"){
             options[i].setAttribute("style", `color: ${color_theme};`);
             options[10].setAttribute("style", `background-color: ${color_theme}; color: #000000;`);
         } else {
@@ -137,10 +137,10 @@ function loader_about(){
         background_themes.value = "actual";
     }
     for(i= 0; i < options.length; i++){
-        if(color_theme != null){
+        if(color_theme != null && color_theme != "var(--theme8)"){
             options[i].setAttribute("style", `color: ${color_theme};`);
             options[10].setAttribute("style", `background-color: ${color_theme};`);
-        } else if(color_theme == "var(--theme8s)"){
+        } else if(color_theme == "var(--theme8)"){
             options[i].setAttribute("style", `color: ${color_theme};`);
             options[10].setAttribute("style", `background-color: ${color_theme}; color: #000000;`);
         } else {
@@ -214,10 +214,10 @@ function loader_versions(){
         background_themes.value = "actual";
     }
     for(i= 0; i < options.length; i++){
-        if(color_theme != null){
+        if(color_theme != null && color_theme != "var(--theme8)"){
             options[i].setAttribute("style", `color: ${color_theme};`);
             options[10].setAttribute("style", `background-color: ${color_theme};`);
-        } else if(color_theme == "var(--theme8s)"){
+        } else if(color_theme == "var(--theme8)"){
             options[i].setAttribute("style", `color: ${color_theme};`);
             options[10].setAttribute("style", `background-color: ${color_theme}; color: #000000;`);
         } else {
@@ -821,7 +821,7 @@ function show_button(button_id){
     let button = button_id;
     let config = document.getElementById("config");
     if(button.style.display == "none"){
-        if(config.style.display != "none"){
+        if(config != null && config.style.display != "none"){
             show_config();
         };
         button.setAttribute("style","-webkit-animation-name: show; animation-name: show;");
@@ -963,7 +963,7 @@ function send(){
             setTimeout(() => {
                 error_message.innerHTML = "";
                 confirm_message.innerHTML = "Sua mensagem está pronta para ser enviada!"
-            }, 2500);
+            }, 2000);
             notification(document.getElementById("fail_feedback"));
             document.getElementById("progress").style.backgroundColor = "red";
             setTimeout(function(){

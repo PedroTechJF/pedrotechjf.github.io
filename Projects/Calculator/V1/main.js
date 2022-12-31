@@ -1,12 +1,12 @@
 function cls(){
-    window.localStorage.clear('n1');
-    window.localStorage.clear('n2');
-    window.localStorage.clear('n3');
+    window.localStorage.removeItem('n1');
+    window.localStorage.removeItem('n2');
+    window.localStorage.removeItem('n3');
 }
 function clean(){
-    window.localStorage.clear('n1');
-    window.localStorage.clear('n2');
-    window.localStorage.clear('n3');
+    window.localStorage.removeItem('n1');
+    window.localStorage.removeItem('n2');
+    window.localStorage.removeItem('n3');
     window.location.reload();
 }
 function sum(){
