@@ -489,6 +489,9 @@ function equal(){
         } else if (operators[0] == "÷"){
             r = (-result[0]) + "/" + numbers[0];
             res.innerHTML = '=' + eval(r);
+        } else if (operators[1] == "√"){
+            r = (-result[0]) + "-" + Math.sqrt(numbers[0]);
+            res.innerHTML = '=' + eval(r);
         } else {
             r = (-result[0]) + operators[0] + numbers[0];
             res.innerHTML = '=' + eval(r);
@@ -504,7 +507,8 @@ function equal(){
         } else if (operators[0] == "√"){
             res.innerHTML = '=' + `${Math.sqrt(result[0])}`;
         } else if (operators[1] == "√"){
-            res.innerHTML = '=' + `${result[0] + Math.sqrt(numbers[0])}`;
+            r = result[0] + operators[0] + Math.sqrt(numbers[0]);
+            res.innerHTML = '=' + eval(r);
         } else if (operators[0] == "x-"){
             r = result[0] + "*" + -numbers[0];
             res.innerHTML = '=' + eval(r);
@@ -958,12 +962,8 @@ function send(){
           }
         else
           {
-            error_message.innerHTML = "Você cancelou o envio do seu feedback!";
-            confirm_message.innerHTML = "";
-            setTimeout(() => {
-                error_message.innerHTML = "";
-                confirm_message.innerHTML = "Sua mensagem está pronta para ser enviada!"
-            }, 2000);
+            error_message.innerHTML = "";
+            confirm_message.innerHTML = "Sua mensagem está pronta para ser enviada!";
             notification(document.getElementById("fail_feedback"));
             document.getElementById("progress").style.backgroundColor = "red";
             setTimeout(function(){

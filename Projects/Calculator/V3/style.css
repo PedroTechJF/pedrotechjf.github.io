@@ -107,10 +107,10 @@ html, body{
     -ms-user-select: none;
     user-select: none;
 }
-.calc:focus, .b:focus, .s:focus, .themes:focus, .submit:focus{
+.calc:focus, .b:focus, .s:focus, .themes:focus, .submit:focus, .input_field:focus{
     outline: none !important;
 }
-#calcs:focus-visible{
+#calcs:focus-visible, .input_field:focus-visible{
     outline: none !important;
 }
 .calc{
@@ -184,7 +184,7 @@ h1{
     color: rgb(255, 255, 255);
     text-align: center;
     margin: 50px 0px 0px 0px;
-    font-size: 3.6vh;
+    font-size: 33px;
     text-align: center;
     font-weight: 600;
     text-transform: uppercase;
@@ -731,7 +731,7 @@ i.fa-solid.fa-e {
         max-width: 280px;
     }
     .itens{
-        top: 150px;
+        top: 205px;
         max-width: 390px;
     }
     #history{
