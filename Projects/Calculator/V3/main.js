@@ -464,11 +464,7 @@ function equal(){
         res.innerHTML = res.innerHTML;
         res.setAttribute("style", "display: block;");
         calcs.value = "";
-    } else if(res.innerHTML == "=" && operators[0] == "-" && operators[1] == undefined){
-        r = numbers[0];
-        res.innerHTML = '=' + r;
-        res.setAttribute("style", "display: block;");
-    } else if(res.innerHTML == "=" && operators[0] == "-" && operators[1] != undefined){
+    } else if(res.innerHTML == "=" && operators[0] == "-"){
         r = -numbers[0];
         res.innerHTML = '=' + r;
         res.setAttribute("style", "display: block;");
@@ -521,6 +517,8 @@ function equal(){
         } else if (operators[0] == "÷"){
             r = result[0] + "/" + numbers[0];
             res.innerHTML = '=' + eval(r);
+        } else if (numbers[0] == undefined){    
+            res.innerHTML = '=' + result[0];
         } else {
             r = result[0] + operators[0] + numbers[0];
             res.innerHTML = '=' + eval(r);
@@ -569,6 +567,8 @@ function equal(){
                 }
             } else if(operators[0] == undefined && res.innerHTML != "="){
                 h2_1.innerHTML = h2_1.lastElementChild.innerHTML;
+            } else if(numbers[0] == undefined) {
+                h2_1.innerHTML = result[0];
             } else if (operators[0] != undefined && operators[0] == "√" && res.innerHTML != "=") {
                 h2_1.innerHTML = operators[0] + result[0];
             } else if (operators[1] != undefined && operators[1] == "√" || operators[1] == "%") {
