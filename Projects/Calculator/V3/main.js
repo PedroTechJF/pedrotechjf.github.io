@@ -570,9 +570,9 @@ function equal(){
             } else if(numbers[0] == undefined) {
                 h2_1.innerHTML = result[0];
             } else if (operators[0] != undefined && operators[0] == "√" && res.innerHTML != "=") {
-                h2_1.innerHTML = operators[0] + result[0];
+                h2_1.innerHTML = operators[0] + numbre[0];
             } else if (operators[1] != undefined && operators[1] == "√" || operators[1] == "%") {
-                h2_1.innerHTML = result[0] + operators[0] + numbers[0] + operators[1];
+                h2_1.innerHTML = result[0] + operators[0] + operators[1] + numbers[0];
             } else if(result[0] != undefined){
                 h2_1.innerHTML = result[0] + operators[0] + numbers[0];
             } else if(operators[0] != undefined) {
