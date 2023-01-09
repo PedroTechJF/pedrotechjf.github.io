@@ -460,11 +460,15 @@ function equal(){
         res.innerHTML = "=" + numbers[0];
         res.setAttribute("style", "display: block;");
         calcs.value = "";
+    } else if(calcs.value.charAt(0) == "-" && numbers[0] == undefined && res.innerHTML != "="){
+        res.innerHTML = res.innerHTML;
+        res.setAttribute("style", "display: block;");
+        calcs.value = "-";
     } else if(calcs.value.includes(operators[0]) == false && res.innerHTML != "="){
         res.innerHTML = res.innerHTML;
         res.setAttribute("style", "display: block;");
         calcs.value = "";
-    } else if(res.innerHTML == "=" && operators[0] == "-"){
+    } else if(res.innerHTML == "=" && calcs.value.charAt(0) == "-"){
         r = -numbers[0];
         res.innerHTML = '=' + r;
         res.setAttribute("style", "display: block;");
@@ -534,6 +538,11 @@ function equal(){
     }
     function createElement(){
         var n;
+        var negative;
+        var element = document.getElementsByClassName("results")[0];
+            if(element != undefined){
+                negative = element.innerHTML;
+            };
         if (res.innerHTML.includes(".")){
             n = res.innerHTML.split(".");
             if (n[1].length > 8){
@@ -570,7 +579,9 @@ function equal(){
             } else if(numbers[0] == undefined) {
                 h2_1.innerHTML = result[0];
             } else if (operators[0] != undefined && operators[0] == "√" && res.innerHTML != "=") {
-                h2_1.innerHTML = operators[0] + numbre[0];
+                h2_1.innerHTML = operators[0] + numbers[0];
+            } else if (result[0] != undefined && negative.includes("-")) {
+                h2_1.innerHTML = "(" + -result[0] + ")" + operators[0] + numbers[0];
             } else if (operators[1] != undefined && operators[1] == "√" || operators[1] == "%") {
                 h2_1.innerHTML = result[0] + operators[0] + operators[1] + numbers[0];
             } else if(result[0] != undefined){
