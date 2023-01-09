@@ -487,10 +487,9 @@ h2{
     padding: 25px;
     border-radius: 20px;
     box-shadow: 4px 4px 2px rgba(0, 0, 0, 0.47); 
-    margin-top: 6px;
 }
 #history_wrapper{
-    margin-top: 114px;
+    margin-top: 50px;
 }
 
 .wrapper h1{
