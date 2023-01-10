@@ -37,17 +37,24 @@ function loader_calc(){
     let color_themes = document.getElementById("color_themes");
     let color_theme = window.localStorage.getItem("color_theme");
 
-    if(theme != null){
-        let theme_number = theme.split(/[^0-9]/).filter(Boolean).map(Number);
-        img.src = theme;
-        actual_background.innerHTML = `Ondas ${theme_number}`;
-        actual_theme.innerHTML = `Tema ${theme_number}`;
-        themes.value = "actual";
-        background_themes.value = "actual";
-    } else {
+    let theme_number = theme.split(/[^0-9]/).filter(Boolean).map(Number);
+    let color_number = color_theme.split(/[^0-9]/).filter(Boolean).map(Number);
+    if(theme == ''){
         img.src = "";
         actual_theme.innerHTML = "Nenhum";
         actual_background.innerHTML = "Nenhum";
+        themes.value = "actual";
+        background_themes.value = "actual";
+    } else if(theme_number[0] != color_number[0]){
+        img.src = theme;
+        actual_theme.innerHTML = "Personalizado";
+        actual_background.innerHTML = `Ondas ${theme_number}`;
+        themes.value = "actual";
+        background_themes.value = "actual";
+    } else {
+        img.src = theme;
+        actual_background.innerHTML = `Ondas ${theme_number}`;
+        actual_theme.innerHTML = `Tema ${theme_number}`;
         themes.value = "actual";
         background_themes.value = "actual";
     }
@@ -716,7 +723,7 @@ function theme_background(){
             img.addEventListener('load', (event) => {
                 img.style.display = "block";
             });
-            actual_background.innerHTML = `${background_themes[i].innerHTML}`;
+            actual_background.innerHTML = `${background_themes[i+1].innerHTML}`;
             background_themes.value = "actual";
             actual_theme.innerHTML = "Personalizado";
             themes.value = "actual";
