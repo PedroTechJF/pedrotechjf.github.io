@@ -37,9 +37,11 @@ function loader_calc(){
     let color_themes = document.getElementById("color_themes");
     let color_theme = window.localStorage.getItem("color_theme");
 
-    let theme_number = theme.split(/[^0-9]/).filter(Boolean).map(Number);
-    let color_number = color_theme.split(/[^0-9]/).filter(Boolean).map(Number);
-    if(theme == ''){
+    var theme_number;
+    var color_number;
+    if(theme != null){theme_number = theme.split(/[^0-9]/).filter(Boolean).map(Number)};
+    if(color_theme != null){color_number = color_theme.split(/[^0-9]/).filter(Boolean).map(Number)};
+    if(theme == '' || theme == null){
         img.src = "";
         actual_theme.innerHTML = "Nenhum";
         actual_background.innerHTML = "Nenhum";
