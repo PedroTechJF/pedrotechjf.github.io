@@ -7,7 +7,7 @@ function loader(){
     }
     document.getElementById("background").addEventListener('loadeddata', function() {
         showPage();
-    })
+    }, true)
 }
 var addEffect = function(button_id) {
     var x = window.matchMedia("(max-width: 800px)");
