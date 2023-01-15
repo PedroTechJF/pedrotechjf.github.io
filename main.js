@@ -5,9 +5,7 @@ function loader(){
         document.getElementById("background").style.display = "block";
         isMobile();
     }
-    document.getElementById("background").addEventListener('loadeddata', function() {
-        showPage();
-    }, true)
+    document.getElementById("body").addEventListener('loadeddata', showPage());
 }
 var addEffect = function(button_id) {
     var x = window.matchMedia("(max-width: 800px)");
