@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="pt-br">
 <html>
+
 <head>
     <meta name="format-detection" content="telephone=no">
     <meta name="msapplication-tap-highlight" content="no">
@@ -12,41 +13,115 @@
     <link rel="shortcut icon" href="favicon.png">
     <link rel="stylesheet" href="style.css">
     <script src="main.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
-    <title>Projetos</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <title>Pedro Tech | Portfólio</title>
 </head>
+
 <body onload="loader()" style="margin:0;">
     <div id="loader">
+        <div id="load_info">
+            <h1 id="title">Portfólio</h1>
+        </div>
         <span class="loader"></span>
-    </div>
-    <div id="contain">
-        <script>
-            var addEffect = function(button_id) {
-                var x = window.matchMedia("(max-width: 800px)");
-                if (x.matches) {
-                    document.getElementById(button_id).setAttribute("style", "background-color: rgba(209, 209, 209, 0.15); transform: scale(1.05);");
-                    setTimeout(function(){
-                        document.getElementById(button_id).setAttribute("style", "background-color: rgb(15, 15, 15); transform: scale(1.0);");
-                    },500);
-                }
-            }
-        </script>
-        <div id="projects-live">
-            <h4 id="i">Projetos - Live</h4>
-            <div id="button">
-                <a href="/Projects/Calculator/V3/index.html" class="b" id="C_L" onclick="add(this.id)">Calculadora</a>
-                <a href="https://www.pedrotech.gq/" class="b" id="W_L" onclick="addEffect(this.id)">Pedro Tech</a>
-            </div>
-        </div>
-        <div id="projects-github">
-            <h4 id="i">Projetos - GitHub</h4>
-            <div id="buttons">
-                <a href="https://github.com/PedroTechJF/Calculator" class="b" id="C_G" onclick="add(this.id)">Calculadora</a>
-                <a href="https://github.com/PedroTechJF/Website" class="b" id="W_G" onclick="add(this.id)">Pedro Tech</a>
-            </div>
+        <div id="load_info1">
+            <h4 class="i">Desenvolvedor</br>Pedro Tech</h1>
         </div>
     </div>
-    
-</div>
+    <video autoplay muted loop id="background" style="display: none;">
+        <source src="background/background.mp4" type="video/mp4">
+      </video>
+    <div id="container" style="display: none;">
+        <header>
+            <a id="index" href="index.html">
+                <div id="hero-title">
+                    <h1 style="margin: 1px 0;">Pedro</h1>
+                    <h2 style="margin: 1px 0;">Tech</h2>
+                </div>
+            </a>
+            <nav class="nav-bar">
+                <div id="menuToggle">
+                    <input id="checkbox" type="checkbox" onclick="isMobile()"/>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <ul id="menu" onclick="hideMenu()">
+                        <li>
+                            <a class="sections" href="#inicio">Início</a>
+                        </li>
+                        <li>
+                            <a class="sections" href="#sobre">Sobre Mim</a>
+                        </li>
+                        <li>
+                            <a class="sections"href="#projetos">Projetos</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <section id="inicio">
+            <div class="contain">
+                <h1 style="margin: 0px">Olá,</h1>
+                <h1 style="margin: 0px;">eu sou Pedro.</h1>
+                <h4 style="margin: 0px;">Desenvolvedor Web</h4>
+                <div class="social">
+                    <a href="https://github.com/PedroTechJF" target="_blank" class="s" id="git1" onclick="addEffect(this.id)"><i class="fa-brands fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/pedro-oliveira-a103a4231" target="_blank" class="s" id="in1" onclick="addEffect(this.id)"><i class="fa-brands fa-linkedin"></i></a>
+                </div>
+            </div>
+        </section>
+        <section id="sobre">
+            <div class="contain">
+                <div id="about">
+                    <img src="img/profile.jpg" alt="Pedro Lucas" width="100" height="100" style="border-radius: 50%;">
+                    <h2 id="name">Pedro Lucas</h2>
+                    <h4 class="i" style="font-weight: initial; text-transform: initial; letter-spacing: 1px; display: block; text-align: left;">Olá, Seja Bem Vindo ao Pedro Tech!<br>O Meu nome é Pedro Lucas, eu tenho 18 anos e resido em Juiz de Fora, Minas
+                    Gerais.<br><br>Mesmo que ainda não esteja cursando nenhuma graduação e nem tampouco curso técnico na área de
+                    Desenvolvimento Web, possuo algum conhecimento e um altíssimo interesse na área de T.I. Boa parte desse conhecimento e
+                    interesse, foram adquiridos através do meu irmão, profissional formado em Sistemas de Informação, e que durante muitos
+                    anos compartilhou um pouco do seu conhecimento comigo, o que fez o meu interesse pela área aumentar cada vez mais.<br>
+                    Claro que através de muitas pesquisas, vídeos e muitas vezes quebrando a cabeça para resolver ou fazer algo, fizeram com
+                    que eu adquirisse ainda mais conhecimento e interesse.<br><br> A partir daí, comecei a trabalhar recentemente em
+                    projetos de Desenvolvimento Web, utilizando HTML, JavaScript e CSS, área da qual quero ampliar meus conhecimentos e me
+                    tornar especialista.</h4>
+                </div>
+            </div>
+        </section>
+        <section id="projetos">
+            <div class="contain">
+                <div id="projects">
+                    <h4>Projetos Disponíveis para Visualização</h4>
+                    <div class="cards">
+                        <a href="https://pedrotechjf.github.io/Projects/Calculator/V3/index.html" target="_blank" id="calc" onclick="addEffect(this.id)">
+                            <div class="card">
+                                <img src="img/calculadora.png" alt="Calculadora">
+                                <p>Calculadora</p>
+                            </div>
+                        </a>
+                        <a href="https://www.pedrotech.gq/" target="_blank" id="website" onclick="addEffect(this.id)">
+                            <div class="card">
+                                <img src="img/website.png" alt="Website">
+                                <p>Website</p>
+                            </div>
+                        </a>
+                    </div>
+                    <a href="https://github.com/PedroTechJF?tab=repositories" target="_blank" class="p" id="git2" onclick="addEffect(this.id)"><h6>Ver Repositórios no GitHub</h6></a>
+                </div>
+            </div>
+        </section>
+        <footer>
+            <div class="contain">
+                <div class="social" style="margin-bottom: 20px;">
+                    <a href="mailto:pedrotech.jf@gmail.com" class="s" id="email" onclick="addEffect(this.id)"><i class="fa-regular fa-envelope"></i></a>
+                    <a href="https://github.com/PedroTechJF" target="_blank" class="s" id="git3" onclick="addEffect(this.id)"><i class="fa-brands fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/pedro-oliveira-a103a4231" target="_blank" class="s" id="in2" onclick="addEffect(this.id)"><i class="fa-brands fa-linkedin"></i></a>
+                </div>
+                <h4 style="margin: 10px 0 0 0">Copyright © 2023 | Pedro Tech | Todos os Direitos Reservados</h4>
+                <h3 style="margin: 1px 0;">Feito por Pedro Lucas, a.k.a Pedro Tech</h3>
+                <h4 style="margin: 1px 0 10px 0">Background por <a href="https://www.youtube.com/@ayzak9485" target="_blank">AYZAK 94(YouTube)</a></h4>
+            </div>
+        </footer>
+
+    </div>
 </body>
+
 </html>
