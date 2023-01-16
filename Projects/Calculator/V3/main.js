@@ -429,10 +429,10 @@ function check(){
     } else if(res.innerHTML == "=" && (calcs.value.charAt(0) == "-" || calcs.value.charAt(0) == "√") && operators[1].length > 0){
         equal();
         calcs.value = operators[1];
-    } else if(res.innerHTML == "=" && operators[0].length > 0 && operators[0] == "√"){
+    } else if(res.innerHTML == "=" && operators[0].length > 0 && (operators[0] == "√" || operators[0] == "%")){
         equal();
         calcs.value = "";
-    } else if(res.innerHTML != "=" && operators[0].length > 0 && operators[0] == "√"){
+    } else if(res.innerHTML != "=" && operators[0].length > 0 && (operators[0] == "√" || operators[0] == "%")){
         equal();
         calcs.value = "";
     } else if(res.innerHTML == "=" && operators[0].length > 0 && numbers.length > 0){
@@ -512,7 +512,7 @@ function equal(){
         } else if (operators[0] != "-" && operators[1] == "%"){
             res.innerHTML = '=' + `${result[0] * numbers[0] / 100 + result[0]}`;
         } else if (operators[0] == "%"){
-            res.innerHTML = '=' + 0;
+            res.innerHTML = '=' + 0;    
         } else if (operators[0] == "√"){
             res.innerHTML = '=' + `${Math.sqrt(result[0])}`;
         } else if (operators[1] == "√"){
@@ -540,7 +540,10 @@ function equal(){
     } else if(res.innerHTML == "="){ 
         if(operators[0] == "√"){
             res.innerHTML = '=' + `${Math.sqrt(numbers[0])}`;
-        } else{
+        } else if(operators[0] == "%"){
+            res.innerHTML = '=' + 0;
+            calcs.value = "";
+        } else {
             res.innerHTML = '=' + `${numbers[0]}`;
         }
         res.setAttribute("style", "display: block;");
@@ -572,6 +575,10 @@ function equal(){
         }
         const c_r = document.createElement("div");
             c_r.className = "c&r";
+        const h2_2 = document.createElement("h2");
+            h2_2.className = "results";
+            h2_2.id = "ress";
+            h2_2.innerHTML = res.innerHTML;
         const h2_1 = document.createElement("h2");
             h2_1.className = "calcs";
             h2_1.id = "ress";
@@ -580,15 +587,19 @@ function equal(){
                     h2_1.innerHTML = operators[0] + numbers[0];
                 } else if (operators[0] == "√") {
                     h2_1.innerHTML = operators[0] + numbers[0];
+                } else if (operators[0] == "%"){
+                    h2_1.innerHTML = "0+" + numbers[0] + operators[0];
                 } else {
                     h2_1.innerHTML = numbers[0];
                 }
-            } else if(operators[0] == undefined && res.innerHTML != "="){
+            } else if((numbers[0] == undefined || operators[0] == undefined) && res.innerHTML != "="){
                 h2_1.innerHTML = h2_1.lastElementChild.innerHTML;
-            } else if(numbers[0] == undefined) {
-                h2_1.innerHTML = result[0];
             } else if (operators[0] != undefined && operators[0] == "√" && res.innerHTML != "=") {
                 h2_1.innerHTML = operators[0] + numbers[0];
+            } else if (result[0] != undefined && negative.includes("-") && operators[1] != undefined && operators[1] == "%") {
+                h2_1.innerHTML = "(" + -result[0] + ")" + operators[0] + numbers[0] + operators[1];
+            } else if (result[0] != undefined && negative.includes("-") && operators[1] != undefined && operators[1] == "√") {
+                h2_1.innerHTML = "(" + -result[0] + ")" + operators[0] + operators[1] + numbers[0];
             } else if (result[0] != undefined && negative.includes("-")) {
                 h2_1.innerHTML = "(" + -result[0] + ")" + operators[0] + numbers[0];
             } else if (operators[1] != undefined && operators[1] == "√" || operators[1] == "%") {
@@ -600,10 +611,6 @@ function equal(){
             } else {
                 h2_1.innerHTML = numbers[0];
             }
-        const h2_2 = document.createElement("h2");
-            h2_2.className = "results";
-            h2_2.id = "ress";
-            h2_2.innerHTML = res.innerHTML;
         c_r.appendChild(h2_1);
         c_r.appendChild(h2_2);
         history_menu.appendChild(c_r);
@@ -844,6 +851,8 @@ function show_personalize(){
 function show_button(button_id){
     let button = button_id;
     let config = document.getElementById("config");
+    var x = window.matchMedia("(max-width: 800px)");
+
     if(button.style.display == "none"){
         if(config != null && config.style.display != "none"){
             show_config();
@@ -866,6 +875,9 @@ function show_button(button_id){
         document.getElementsByTagName("body")[0].setAttribute("style", "margin:0");
         if(button == feedback_menu){
             document.getElementById("feedback").style.zIndex = 0;
+            if(x.matches){
+                extra_buttons.insertBefore(extra_buttons.children[0], extra_buttons.children[6]);
+            };
             setTimeout(function(){
                 document.getElementById("form_name").setAttribute("style", "border: 1px solid #e0e0e0");
                 document.getElementById("form_email").setAttribute("style", "border: 1px solid #e0e0e0");
