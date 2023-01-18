@@ -288,6 +288,9 @@ footer{
     .cards{
       width: 350px;
     }
+    #projetos{
+      height: 150vh;
+    }
     ul{
       flex-wrap: wrap;
       align-content: flex-start;
