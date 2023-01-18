@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="favicon.png">
+    <link rel="stylesheet" href="style.css">
+    <script src="main.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
+    <title>Contador</title>
+</head>
+<body onload="loader()" id="body" style="margin:0;">
+    <div id="loader">
+        <div id="load_info">
+            <h1 id="title">Contador</h1>
+        </div>
+        <span class="loader"></span>
+        <div id="load_info1">
+            <h4 class="i">Desenvolvedor</br>Pedro Tech</h1>
+        </div>
+    </div>
+    <div id="container" style="display: none;">
+        <div id="contador">
+            <h1 id="hero-title">Contador</h1>
+            <div id="info">
+                <div class="menus" id="inf" onclick="showMenu(this.id)"><i class="fa-solid fa-circle-info"></i></div>
+                <div class="containner" id="inf_menu" style="display: none;">
+                    <div class="itens">
+                        <h4 class="i">Sobre</h4>
+                        <p id="simple_info" style="margin-bottom: 0; text-align: center;">Uma simples ferramenta para contar e salvar números.</p>
+                        <div class="menus" id="coffee" onclick="showMenu(this.id)">Pay me a Coffee<i style="margin-left:10px;" class="fa-solid fa-mug-saucer"></i></div>
+                    </div>
+                </div>
+                <div class="containner" id="coffee_menu" style="display: none;">
+                    <div class="itens">
+                        <h4 class="i">Pay Me a Coffee</h4>
+                        <p id="simple_info" style="margin-bottom: 0;">Esse Contador foi desenvolvido com o objetivo de ser totalmente gratuito, e livre da presença de anúncios.<br>
+                            E devido isso, esse menu foi criado para caso você, usúario, queira realizar uma espécie de doação.<br>
+                            Dessa forma, serei incentivado em não somente realizar as manutenções e desenvolver novas atualizações, quanto em continuar com o meu trabalho e realizar a criação de 
+                            outros projetos.<br>
+                        </p>
+                        <p id="simple_info" style="text-align: center; margin-top: 5px; font-size: 18px; font-weight: 600; text-transform: uppercase; letter-spacing: 3px;">Muito obrigado a todos pelo suporte!</p>
+                        <div id="wrap">
+                            <div class="donation_options">
+                                <a href="https://www.paypal.com/donate/?business=8LLVHTSUGG3GC&no_recurring=0&item_name=Pay+Me+a+Coffee&currency_code=BRL" target="_blank"><img src="img/PayPal_QR_Code.png" alt="QR Code" class="donation_img"></a>
+                                <h4 class="i" style="font-size: 18px;">PayPal - QR Code</h4>
+                                <a href="https://www.paypal.com/donate/?business=8LLVHTSUGG3GC&no_recurring=0&item_name=Pay+Me+a+Coffee&currency_code=BRL" target="_blank" style="margin-top: 5px; background-color: rgb(255 255 255 / 70%); color:rgb(0, 0, 0);" class="b" id="paypal">Link Direto<i style="margin-left: 10px;"class="fa-brands fa-paypal"></i></i></a>
+                            </div>
+                            <div class="donation_options">
+                                <a href="https://nubank.com.br/pagar/12modw/XwcmUd52RF" target="_blank"><img src="img/PIX_QR_Code.jpg" alt="QR Code" class="donation_img"></a>
+                                <h4 class="i" style="font-size: 18px;">PIX - QR Code</h4>
+                                <a onclick="copy_text()" style="margin-top: 5px; background-color: rgb(255 255 255 / 70%); color:rgb(0, 0, 0);"class="b" id="pix_code">Copiar Código do</br>QR Code<i style="margin-left: 10px;" class="fa-regular fa-copy"></i></a>      
+                            </div>
+                        </div>
+                        <div class="menus close" id="closeo" onclick="showMenu(this.id)"><i class="fa-solid fa-xmark"></i></div>
+                    </div>
+                </div>
+                <div class="menus" id="feedback" onclick="showMenu(this.id)"><i class="fa-solid fa-message"></i></div>
+                    <div class="containner" id="feedback_menu" style="display: none;">
+                        <div class="wrapper" id="wrapper">
+                            <h1 id="title">Feedback</h1>
+                            <h3 style="font-family: Inter;text-align: center;margin-bottom: 30px;color: #d1d1d1; font-size:13.3px; margin-top:-15px; text-shadow: none; box-shadow: none;background-color: rgba(0 0 0 / 0%);">Clicando no botão abaixo e com o formulário preenchido, sua mensagem já estará predefinada para ser enviada</h3>
+                            <div id="error_message">
+                    
+                            </div>
+                            <div id="confirm_message">
+                    
+                            </div>
+                            <form class="social" id="form_social" oninput="validate()" onsubmit="return send();">
+                                <div class="input_field">
+                                    <input type="text" placeholder="Nome" id="form_name">
+                                </div>
+                                <div class="input_field">
+                                    <input type="text" placeholder="E-mail" id="form_email">
+                                </div>
+                                <div class="input_field">
+                                    <textarea placeholder="Comentário" id="form_message"></textarea>
+                                </div>
+                                <div id="form_buttons" style="display: flex; justify-content: center;">
+                                    <a style="font-size: 20px; background-color: transparent; color: #FFF;" class="s" href="#" id="e_mail" style="padding: 0px;" onclick="send()"><i class="fa-regular fa-envelope fa-2x" style="margin: 0 -2px;"></i></img></button></a>    
+                                </div>
+                            </form>
+                        </div>
+                        <div class="menus close" id="closef" onclick="showMenu(this.id)"><i class="fa-solid fa-xmark"></i></div>
+                    </div>
+                <div class="menus" id="config" onclick="showMenu(this.id)"><i class="fa-solid fa-gear"></i></div>
+                    <div class="containner" id="config_menu" style="display: none;">
+                        <div class="itens">
+                            <h4 class="i">Configurações</h4>
+                            <p id="simple_info" style="margin-bottom: 0;">Selecione uma cor de fundo:</p>
+                            <div id="wrap">
+                                <div class="color_options">
+                                    <div style="background-color: var(--color0);" id="color0" class="colors" onclick="setColor(this.id)"></div>
+                                    <div style="background-color: var(--color1);" id="color1" class="colors" onclick="setColor(this.id)"></div>
+                                    <div style="background-color: var(--color2);" id="color2" class="colors" onclick="setColor(this.id)"></div>
+                                    <div style="background-color: var(--color3);" id="color3" class="colors" onclick="setColor(this.id)"></div>
+                                    <div style="background-color: var(--color4);" id="color4" class="colors" onclick="setColor(this.id)"></div>
+                                    <div style="background-color: var(--color5);" id="color5" class="colors" onclick="setColor(this.id)"></div>
+                                    <div style="background-color: var(--color6);" id="color6" class="colors" onclick="setColor(this.id)"></div>
+                                    <div style="background-color: var(--color7);" id="color7" clinputass="colors" onclick="setColor(this.id)"></div>
+                                    <div style="background-color: var(--color8);" id="color8" class="colors" onclick="setColor(this.id)"></div>
+                                    <div class="colors" style="flex-wrap:wrap;"><input type="color" id="color9" oninput="setColor(this.id)"><p style="font-size: 15px; margin: 0;">Personalizado</p></div>
+                                </div>
+                            </div>
+                            <p id="simple_info" style="margin-bottom: 0; text-align: center;">Selecione uma cor para os textos e botões:</p>
+                            <div id="wrap">
+                                <div class="color_options">
+                                    <div style="background-color: var(--color0);" id="colorb0" class="colors" onclick="setColor(this.id)"></div>
+                                    <div style="background-color: var(--color8);" id="colorb1" class="colors" onclick="setColor(this.id)"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <div href="apk/Contador_V1.0.0.apk" class="menus" style="display: none;" id="android" download><i class="fa-brands fa-android"></i></div>
+            </div>
+            <div id="number">0</div>
+            <div id="options">
+                <div class="options" style="display: none;" id="reset" onclick="contador(this.id)"><i class="fa-solid fa-rotate"></i></div>
+                <div class="options" id="+" onclick="contador(this.id)"><i class="fa-solid fa-plus"></i></div>
+                <div class="options" style="display: none;" id="-" onclick="contador(this.id)"><i class="fa-solid fa-minus"></i></div>
+            </div>
+            <div id="notifications">
+                <h4 id="active" style="display: none;">0</h4>
+                <div id="bar">
+                    <div id="progress"></div>
+                </div>
+                <h4 class="i" id="send_feedback">O seu feedback foi enviado com sucesso!</h4>
+                <h4 class="i" id="fail_feedback">Você cancelou o envio do seu feedback!</h4>
+            </div> 
+        </div>
+    </div>
+</body>
+</html>
