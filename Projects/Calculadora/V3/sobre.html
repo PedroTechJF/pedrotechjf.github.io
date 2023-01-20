@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="pt-br">
+<html>
+<head>
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta http-equiv="X-UA-Compatibility" content="IE=Edge">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" href="favicon.svg">
+    <link rel="stylesheet" href="style.css">
+    <script src="main.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
+    <title>Sobre</title>
+</head>
+<body onload="loader_about()" style="margin:0;">
+    <img src="" id="img">
+    <div id="loader">
+        <div id="load_info">
+            <h1 id="title">Calculadora</h1>
+        </div>
+        <span class="loader"></span>
+        <div id="load_info1">
+            <h4 class="i">Desenvolvedor</br>Pedro Tech</h1>
+        </div>
+    </div>
+    <div id="info" class="info">
+        <h1 id="title">Sobre</h1>
+    </div>
+    <div id="config_buttons">
+        <a href="apk/Calculadora_V3.2.0.apk" class="o" id="android" download><i class="fa-brands fa-android"></i></a>
+    </div>
+    <div id="extra_buttons" style="display: none;">
+        <a onclick='show_button(document.getElementById("coffee_menu"))' class="o" id="coffee"><i class="fa-solid fa-mug-saucer"></i></a>
+            <div class="containner" id="coffee_menu" style="display: none;">
+                <div class="itens">
+                    <h4 class="i">Pay Me a Coffee</h4>
+                    <p id="simple_info" style="margin-bottom: 0;">Essa calculadora levou um certo tempo para chegar no resultado atual, mas foi desenvolvida com o objetivo de ser totalmente gratuita, e livre da presença de anúncios.<br>
+                        Esse menu foi criado para caso você, usúario, queira realizar uma espécie de doação.<br>
+                        Dessa forma, serei incentivado em não somente realizar as manutenções e desenvolver novas atualizações para a calculadora, quanto em continuar com o meu trabalho e realizar a criação de 
+                        outros projetos.<br>
+                    </p>
+                    <p id="simple_info" style="text-align: center; margin-top: 5px; font-size: 18px; font-weight: 600; text-transform: uppercase; letter-spacing: 3px;">Muito obrigado a todos pelo suporte!</p>
+                    <div id="wrap">
+                        <div class="donation_options">
+                            <img src="img/PayPal_QR_Code.png" alt="QR Code" class="donation_img">
+                            <h4 class="i" style="font-size: 18px;">PayPal - QR Code</h4>
+                            <a href="https://www.paypal.com/donate/?business=8LLVHTSUGG3GC&no_recurring=0&item_name=Pay+Me+a+Coffee&currency_code=BRL" target="_blank" style="margin-top: 5px; background-color: rgb(255 255 255 / 70%); color:rgb(0, 0, 0);" class="b" id="paypal">Link Direto<i style="margin-left: 10px;"class="fa-brands fa-paypal"></i></i></a>
+                        </div>
+                        <div class="donation_options">
+                            <img src="img/PIX_QR_Code.jpg" alt="QR Code" class="donation_img">
+                            <h4 class="i" style="font-size: 18px;">PIX - QR Code</h4>
+                            <a onclick="copy_text()" style="margin-top: 5px; background-color: rgb(255 255 255 / 70%); color:rgb(0, 0, 0);"class="b" id="pix_code">Copiar Código do</br>QR Code<i style="margin-left: 10px;" class="fa-regular fa-copy"></i></a>      
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <a onclick='show_button(document.getElementById("feedback_menu"))' class="o" id="feedback" style="top: 55px;"><i class="fa-solid fa-comment"></i></a>
+            <div class="containner" id="feedback_menu" style="display: none;">
+                <div class="wrapper">
+                    <h1 id="title">Feedback</h1>
+                    <h3 style="font-family: Inter;text-align: center;margin-bottom: 30px;color: gray; font-size:smaller; margin-top:-15px; text-shadow: none; box-shadow: none;background-color: rgba(0 0 0 / 0%);">Clicando no botão abaixo e com o formulário preenchido, sua mensagem já estará predefinada para ser enviada</h3>
+                    <div id="error_message">
+            
+                    </div>
+                    <div id="confirm_message">
+            
+                    </div>
+                    <form class="social" id="form_social" onsubmit="return validate();">
+                        <div class="input_field">
+                            <input type="text" placeholder="Nome" id="form_name">
+                        </div>
+                        <div class="input_field">
+                            <input type="text" placeholder="E-mail" id="form_email">
+                        </div>
+                        <div class="input_field">
+                            <textarea placeholder="Comentário" id="form_message"></textarea>
+                        </div>
+                        <div id="form_buttons" style="display: flex;">
+                            <a style="font-size: 20px; background-color: transparent" class="s" href="#" id="e_mail" style="padding: 0px;" onclick="validate()"><i class="fa-regular fa-envelope fa-2x" style="margin: 0 -2px;"></i></img></button></a>    
+                        </div>
+                    </form>
+                </div>
+            </div>
+    </div>
+    <div id="about" style="flex-direction: column;">
+        <img src="img/profile.jpg" alt="Pedro Lucas" width="80" height="80"style="border-radius: 50%;">
+        <h2 id="name">Pedro Lucas</h2>
+        <h4 class="i" style="font-weight: initial; text-transform: initial; letter-spacing: 0px; display: block; text-align: justify;">Olá, o Meu nome é Pedro Lucas, eu tenho 18 anos e resido em Juiz de Fora, Minas
+            Gerais.<br><br>Mesmo que ainda não esteja cursando nenhuma graduação e nem tampouco curso técnico na área de
+            Desenvolvimento Web, possuo algum conhecimento e um altíssimo interesse na área de T.I. Boa parte desse conhecimento e
+            interesse, foram adquiridos através do meu irmão, profissional formado em Sistemas de Informação, e que durante muitos
+            anos compartilhou um pouco do seu conhecimento comigo, o que fez o meu interesse pela área aumentar cada vez mais.<br>
+            Claro que através de muitas pesquisas, vídeos e muitas vezes quebrando a cabeça para resolver ou fazer algo, fizeram com
+            que eu adquirisse ainda mais conhecimento e interesse.<br><br> A partir daí, comecei a trabalhar recentemente em
+            projetos de Desenvolvimento Web, utilizando HTML, JavaScript e CSS, área da qual quero ampliar meus conhecimentos e me
+            tornar especialista.
+        </h4></br>
+        <div id="social">
+            <a href="mailto:pedrotech.jf@gmail.com" class="s"><i class="fa-regular fa-envelope"></i></a>
+            <a href="https://www.linkedin.com/in/pedro-oliveira-a103a4231" target="_blank" class="s"><i class="fa-brands fa-linkedin"></i></a>
+            <a href="https://github.com/PedroTechJF" target="_blank" class="s"><i class="fa-brands fa-github"></i></a>
+        </div>
+    </div>
+    <div id="last_buttons">
+        <a href="index.html" class="b">Calculadora</a>
+        <a href="versões.html" class="b">Versões Anteriores do Projeto</a>
+        <a href="../../" class="b">Outros Projetos</a>
+    </div>
+    <div id="notifications">
+        <div id="bar">
+            <div id="progress"></div>
+        </div>
+        <h4 class="i" id="clear_history">O histórico foi apagado!</h4>
+        <h4 class="i" id="clear_recent">O último resultado foi apagado!</h4>
+        <h4 class="i" id="theme">O tema foi alterado!</h4>
+        <h4 class="i" id="theme_bkg">O papel de parede foi alterado!</h4>
+        <h4 class="i" id="theme_color">A cor da calculadora foi alterada!</h4>
+    </div> 
+    
+</div>
+</body>
+</html>
