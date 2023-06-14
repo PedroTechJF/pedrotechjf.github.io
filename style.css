@@ -167,7 +167,7 @@ section{
   height: 100vh;
 }
 #sobre{
-  height: 135vh;
+  height: 170vh;
 }
 #about{
   display: flex;
@@ -278,7 +278,7 @@ footer{
       top: 45%;
     }
     #sobre{
-      height: 180vh;
+      height: 220vh;
     }
     #about{
       width: 310px;
